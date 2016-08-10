@@ -77,7 +77,7 @@ public class PlayScreen implements Screen {
 
     private void update() {
         gameText.update(player.getPoints(), gameIsNotOverYet);
-        timeBomb.lifeTimer(gameIsNotOverYet);
+        timeBomb.update();
         player.update();
         checkForCollisionsWithItself();
         checkForCollisionsWithWalls();

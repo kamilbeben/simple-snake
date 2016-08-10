@@ -57,16 +57,13 @@ public class TimeBomb extends Sprite {
         if (alive) draw(batch);
     }
 
-    public void lifeTimer(boolean gameIsNotOverYet) {
-        if (gameIsNotOverYet) {
-            lifeTime += Gdx.graphics.getDeltaTime();
-            if ((isDead() && lifeTime > interval())) {
-                randomizePosition();
-                lifeTime = 0;
-            } else if (isAlive() && lifeTime > liveLenght()) {
-                dissapear();
-            }
-
+    public void update() {
+        lifeTime += Gdx.graphics.getDeltaTime();
+        if ((isDead() && lifeTime > interval())) {
+            randomizePosition();
+            lifeTime = 0;
+        } else if (isAlive() && lifeTime > liveLenght()) {
+            dissapear();
         }
         setTransparency();
     }
