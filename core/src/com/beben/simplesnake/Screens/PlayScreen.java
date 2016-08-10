@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.beben.simplesnake.GameLogic.Apple;
 import com.beben.simplesnake.GameLogic.TimeBomb;
 import com.beben.simplesnake.GameLogic.GameInterface;
 import com.beben.simplesnake.GameLogic.GameText;
@@ -31,6 +32,7 @@ public class PlayScreen implements Screen {
 
     private Player player;
     private TimeBomb timeBomb;
+    private Apple apple;
 
     private boolean gameIsNotOverYet;
 
@@ -47,10 +49,10 @@ public class PlayScreen implements Screen {
         gameInterface = new GameInterface(stage);
         theme = new GameTheme();
         player = new Player();
+        apple = new Apple();
         timeBomb = new TimeBomb();
         gameText = new GameText();
         gameIsNotOverYet = true;
-
     }
 
 
@@ -70,6 +72,7 @@ public class PlayScreen implements Screen {
         theme.draw(game.batch);
         player.draw(game.batch);
         timeBomb.drawIfAlive(game.batch);
+        apple.draw(game.batch);
         gameText.render(game.batch);
         game.batch.end();
         gameInterface.render();
@@ -77,11 +80,12 @@ public class PlayScreen implements Screen {
 
     private void update() {
         gameText.update(player.getPoints(), gameIsNotOverYet);
+        if (gameIsNotOverYet) apple.update();
         timeBomb.update();
         player.update();
         checkForCollisionsWithItself();
         checkForCollisionsWithWalls();
-        checkForCollisionsWithTimeBomb();
+        checkForCollisionsWithSnacks();
         handleUserInput();
     }
 
@@ -99,9 +103,12 @@ public class PlayScreen implements Screen {
         }
     }
 
-    private void checkForCollisionsWithTimeBomb() {
-        if (timeBomb.isAlive() && player.checkIfCollidingWith(timeBomb)) {
+    private void checkForCollisionsWithSnacks() {
+        if (timeBomb.isAlive() && player.isCollidingWith(timeBomb)) {
             timeBomb.dissapear();
+        }
+        if (player.isCollidingWith(apple)) {
+            apple.randomizePosition();
         }
     }
 

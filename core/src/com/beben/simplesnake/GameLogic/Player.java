@@ -128,11 +128,14 @@ public class Player {
         addNewBodyElement();
         points += 50;
         timer.startNitro();
-
     }
 
+    public void eatApple() {
+        addNewBodyElement();
+        points += 10;
+    }
 
-    public boolean checkIfCollidingWith(TimeBomb timeBomb) {
+    public boolean isCollidingWith(TimeBomb timeBomb) {
 
         try {
             for (int i=0;i<elementList.size();i++) {
@@ -143,6 +146,21 @@ public class Player {
             }
         } catch (ConcurrentModificationException e) {
             System.out.println("ConcurrentModificationException in Player.checkIfCollidingWithAndEat(TimeBomb)");
+        }
+        return false;
+    }
+
+    public boolean isCollidingWith(Apple apple) {
+
+        try {
+            for (int i=0;i<elementList.size();i++) {
+                if (elementList.get(i).isCollidingWith(apple.position)) {
+                    eatApple();
+                    return true;
+                }
+            }
+        } catch (ConcurrentModificationException e) {
+            System.out.println("ConcurrentModificationException in Player.checkIfCollidingWithAndEat(Apple)");
         }
         return false;
     }

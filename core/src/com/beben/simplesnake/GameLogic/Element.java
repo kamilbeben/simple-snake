@@ -38,9 +38,11 @@ public class Element extends Sprite {
     }
 
     public boolean isCollidingWith (Position position) {
-        if (getX() > position.x || getX() < position.x ||
-                getY() > position.y || getY() < position.y) return false;
-        else return true;
+//        if (getX() > position.x || getX() < position.x ||
+//                getY() > position.y || getY() < position.y) return false;
+//        else return true;
+        if (getX() == position.x && getY() == position.y) return true;
+        else return false;
     }
 
     public Position getPosition() {
