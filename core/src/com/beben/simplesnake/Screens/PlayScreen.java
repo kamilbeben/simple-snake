@@ -176,28 +176,28 @@ public class PlayScreen implements Screen {
     private void moveRight() {
         if (player.direction != Player.DIRECTION.LEFT
                 && !player.collidingWithWall) {
-            player.setDirectionAndCheckTime(com.beben.simplesnake.GameLogic.Player.DIRECTION.RIGHT, timeHelper);
+            player.direction = Player.DIRECTION.RIGHT;
         }
     }
 
     private void moveLeft() {
         if (player.direction != Player.DIRECTION.RIGHT
                 && !player.collidingWithWall) {
-            player.setDirectionAndCheckTime(com.beben.simplesnake.GameLogic.Player.DIRECTION.LEFT, timeHelper);
+            player.direction = Player.DIRECTION.LEFT;
         }
     }
 
     private void moveUp() {
         if (player.direction != Player.DIRECTION.DOWN
                 && !player.collidingWithWall) {
-            player.setDirectionAndCheckTime(com.beben.simplesnake.GameLogic.Player.DIRECTION.UP, timeHelper);
+            player.direction = Player.DIRECTION.UP;
         }
     }
 
     private void moveDown() {
         if (player.direction != Player.DIRECTION.UP
                 && !player.collidingWithWall){
-            player.setDirectionAndCheckTime(Player.DIRECTION.DOWN, timeHelper);
+            player.direction = Player.DIRECTION.DOWN;
         }
     }
 

@@ -7,8 +7,8 @@ import com.beben.simplesnake.SnakeGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = 240;
-		config.height = 400;
+		config.width = 455;
+		config.height = 700;
 		config.resizable = true;
 		new LwjglApplication(new SnakeGame(), config);
 	}

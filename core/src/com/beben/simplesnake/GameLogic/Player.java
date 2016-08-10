@@ -17,22 +17,19 @@ public class Player {
     }
 
     public DIRECTION direction;
-    private float lastDirectionChange;
-    private float speed;
     private int points;
     private static final int moveDistance = 12;
     private List <Element> elementList;
     private List <Position> elementPastPosition;
-    private float timeHelper;
     private boolean keepMoving;
     public boolean collidingWithWall;
+    private Timer timer;
 
 
 
     public Player() {
-        lastDirectionChange = 0;
+        timer = new Timer();
         points = 0;
-        speed = 0.1f;
         direction = DIRECTION.UP;
         initializeSnakeElements();
         keepMoving = true;
@@ -55,28 +52,12 @@ public class Player {
     }
 
     public void update() {
-        increaseSpeedIfTimeIsRight();
+        timer.increaseSpeedIfTimeIsRight(points);
         moveIfTimeIsRight();
     }
 
-    private void increaseSpeedIfTimeIsRight() { // 0.1f
-        if (points < 50) speed = 0.1f;
-        else if (points < 100) speed = 0.090f;
-        else if (points < 150) speed = 0.080f;
-        else if (points < 200) speed = 0.075f;
-        else if (points < 250) speed = 0.070f;
-        else if (points < 300) speed = 0.065f;
-        else if (points < 350) speed = 0.060f;
-        else if (points < 400) speed = 0.055f;
-        else if (points < 500) speed = 0.050f;
-    }
-
     private void moveIfTimeIsRight() {
-        timeHelper += Gdx.graphics.getDeltaTime();
-        if (timeHelper > speed) {
-            if (keepMoving) move();
-            timeHelper = 0;
-        }
+        if (keepMoving && timer.isItTimeToMove()) move();
     }
 
     private void move() {
@@ -228,14 +209,5 @@ public class Player {
 
     public int getPoints() {
         return points;
-    }
-
-    public void setDirectionAndCheckTime(DIRECTION destination, float timer) {
-
-        if (timer - lastDirectionChange > speed + 0.05) {
-            direction = destination;
-            lastDirectionChange = timer;
-        }
-
     }
 }
