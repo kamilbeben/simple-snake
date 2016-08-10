@@ -32,8 +32,6 @@ public class PlayScreen implements Screen {
     private Player player;
     private TimeBomb timeBomb;
 
-    private float timeHelper;
-    private float timeBombLifeTime;
     private boolean gameIsNotOverYet;
 
 
@@ -47,8 +45,6 @@ public class PlayScreen implements Screen {
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
         gameInterface = new GameInterface(stage);
-
-        timeBombLifeTime = 0;
         theme = new GameTheme();
         player = new Player();
         timeBomb = new TimeBomb();
@@ -73,16 +69,15 @@ public class PlayScreen implements Screen {
 
         theme.draw(game.batch);
         player.draw(game.batch);
-        timeBomb.draw(game.batch);
+        timeBomb.drawIfAlive(game.batch);
         gameText.render(game.batch);
         game.batch.end();
         gameInterface.render();
     }
 
     private void update() {
-        timeHelper += Gdx.graphics.getDeltaTime();
         gameText.update(player.getPoints(), gameIsNotOverYet);
-        cherryLifeTimer();
+        timeBomb.lifeTimer(gameIsNotOverYet);
         player.update();
         checkForCollisionsWithItself();
         checkForCollisionsWithWalls();
@@ -105,27 +100,11 @@ public class PlayScreen implements Screen {
     }
 
     private void checkForCollisionsWithTimeBomb() {
-        if (player.checkIfCollidingWith(timeBomb)) {
-            timeBomb.randomizePosition();
-            timeBombLifeTime = 0;
+        if (timeBomb.isAlive() && player.checkIfCollidingWith(timeBomb)) {
+            timeBomb.dissapear();
         }
     }
 
-    private void cherryLifeTimer() {
-        if (gameIsNotOverYet) {
-            timeBombLifeTime += Gdx.graphics.getDeltaTime();
-            if (timeBombLifeTime > timeBomb.lifeTime()) {
-                timeBomb.randomizePosition();
-                timeBombLifeTime = 0;
-            }
-        }
-        setCherryTransparency();
-    }
-
-    private void setCherryTransparency() {
-        if (timeBombLifeTime < timeBomb.lifeTime() / 2)       timeBomb.setAlpha(1);
-        else if (timeBombLifeTime < timeBomb.lifeTime() / 1.5)  timeBomb.setAlpha(0.5f);
-    }
 
     private void gameOver() {
         player.stopMoving();

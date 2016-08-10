@@ -127,13 +127,10 @@ public class Player {
     public void eatTimeBomb() {
         addNewBodyElement();
         points += 50;
-        nitro();
+        timer.startNitro();
 
     }
 
-    private void nitro() {
-        //TODO nitro for 1 seconds
-    }
 
     public boolean checkIfCollidingWith(TimeBomb timeBomb) {
 
