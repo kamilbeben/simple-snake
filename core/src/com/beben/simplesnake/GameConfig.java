@@ -6,6 +6,7 @@ package com.beben.simplesnake;
 public class GameConfig {
 
     public boolean walls = false;
+    public String style = "default/";
 
 
     public GameConfig() {

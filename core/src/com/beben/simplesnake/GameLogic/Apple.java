@@ -15,8 +15,8 @@ public class Apple extends Sprite{
     public Position position;
     public float lifeTime;
 
-    public Apple() {
-        super(new Texture("default/" + "apple.png"));
+    public Apple(String style) {
+        super(new Texture(style + "apple.png"));
         position = new Position();
         randomizePosition();
         lifeTime = 0;

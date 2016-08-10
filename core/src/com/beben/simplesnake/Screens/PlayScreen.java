@@ -50,7 +50,7 @@ public class PlayScreen implements Screen {
         theme = new GameTheme();
         player = new Player();
         apple = new Apple();
-        timeBomb = new TimeBomb();
+        timeBomb = new TimeBomb();//TODO STYLE
         gameText = new GameText();
         gameIsNotOverYet = true;
     }
@@ -80,8 +80,11 @@ public class PlayScreen implements Screen {
 
     private void update() {
         gameText.update(player.getPoints(), gameIsNotOverYet);
-        if (gameIsNotOverYet) apple.update();
-        timeBomb.update();
+        if (gameIsNotOverYet) {
+            apple.update();
+            timeBomb.update();
+
+        }
         player.update();
         checkForCollisionsWithItself();
         checkForCollisionsWithWalls();
