@@ -16,6 +16,7 @@ public class Player {
         LEFT, RIGHT, UP, DOWN;
     }
 
+
     public DIRECTION direction;
     private int points;
     private static final int moveDistance = 12;
@@ -52,6 +53,7 @@ public class Player {
     }
 
     public void update() {
+        timer.update();
         timer.increaseSpeedIfTimeIsRight(points);
         moveIfTimeIsRight();
     }
@@ -199,7 +201,12 @@ public class Player {
         if (direction == DIRECTION.DOWN) {
             elementList.get(0).setY(SnakeGame.V_HEIGHT - SnakeGame.BORDER);
         }
+    }
 
+    public void setDirection(DIRECTION direction) {
+        if (timer.isItTimeToChangeDirection()) {
+            this.direction = direction;
+        }
     }
 
     public boolean isCollidingWithWalls( ) {

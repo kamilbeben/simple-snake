@@ -50,7 +50,7 @@ public class PlayScreen implements Screen {
         theme = new GameTheme();
         player = new Player();
         apple = new Apple();
-        timeBomb = new TimeBomb();//TODO STYLE
+        timeBomb = new TimeBomb();
         gameText = new GameText();
         gameIsNotOverYet = true;
     }
@@ -81,7 +81,6 @@ public class PlayScreen implements Screen {
     private void update() {
         gameText.update(player.getPoints(), gameIsNotOverYet);
         if (gameIsNotOverYet) {
-            apple.update();
             timeBomb.update();
 
         }
@@ -165,28 +164,28 @@ public class PlayScreen implements Screen {
     private void moveRight() {
         if (player.direction != Player.DIRECTION.LEFT
                 && !player.collidingWithWall) {
-            player.direction = Player.DIRECTION.RIGHT;
+            player.setDirection(Player.DIRECTION.RIGHT);
         }
     }
 
     private void moveLeft() {
         if (player.direction != Player.DIRECTION.RIGHT
                 && !player.collidingWithWall) {
-            player.direction = Player.DIRECTION.LEFT;
+            player.setDirection(Player.DIRECTION.LEFT);
         }
     }
 
     private void moveUp() {
         if (player.direction != Player.DIRECTION.DOWN
                 && !player.collidingWithWall) {
-            player.direction = Player.DIRECTION.UP;
+            player.setDirection(Player.DIRECTION.UP);
         }
     }
 
     private void moveDown() {
         if (player.direction != Player.DIRECTION.UP
                 && !player.collidingWithWall){
-            player.direction = Player.DIRECTION.DOWN;
+            player.setDirection(Player.DIRECTION.DOWN);
         }
     }
 
