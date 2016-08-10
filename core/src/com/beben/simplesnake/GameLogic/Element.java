@@ -3,18 +3,22 @@ package com.beben.simplesnake.GameLogic;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.beben.simplesnake.SnakeGame;
+import com.beben.simplesnake.TextureHolder;
 
 /**
  * Created by bezik on 05.08.16.
  */
 public class Element extends Sprite {
 
-    private static final Texture headTexture = new Texture("default/" + "snake_head_texture.png");
-    private static final Texture bodyTexture = new Texture("default/" + "snake_body_texture.png");
-    private static final Texture endTexture = new Texture("default/" + "snake_end_texture.png");
+    private Texture headTexture;
+    private Texture bodyTexture;
+    private Texture endTexture;
 
-    public Element() {
-        super(headTexture);
+    public Element(TextureHolder textureHolder) {
+        super(textureHolder.snake_HEAD);
+        headTexture = textureHolder.snake_HEAD;
+        bodyTexture = textureHolder.snake_BODY;
+        endTexture = textureHolder.snake_END;
         hide();
     }
 

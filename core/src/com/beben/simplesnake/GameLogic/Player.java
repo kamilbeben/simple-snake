@@ -25,10 +25,12 @@ public class Player {
     private boolean keepMoving;
     public boolean collidingWithWall;
     private Timer timer;
+    private TextureHolder textureHolder;
 
 
 
-    public Player() {
+    public Player(TextureHolder textureHolder) {
+        this.textureHolder = textureHolder;
         timer = new Timer();
         points = 0;
         direction = DIRECTION.UP;
@@ -39,7 +41,7 @@ public class Player {
     private void initializeSnakeElements() {
         elementList = new ArrayList<Element>();
         elementPastPosition = new ArrayList<Position>();
-        elementList.add(new Element());
+        elementList.add(new Element(textureHolder));
         elementList.get(0).setPosition(SnakeGame.BORDER + 9 * moveDistance,
                 SnakeGame.V_HEIGHT - SnakeGame.BORDER - 9 * moveDistance);
         elementPastPosition.add(new Position());
@@ -48,7 +50,7 @@ public class Player {
     }
 
     private void addNewBodyElement() {
-        elementList.add(new Element());
+        elementList.add(new Element(textureHolder));
         elementPastPosition.add(new Position());
     }
 

@@ -22,17 +22,16 @@ public class MenuScreen implements Screen {
     private Viewport viewport;
     public Stage stage;
 
-
-    private Sprite menuBackground;
     private static final int buttonSpacing = 16;
+    private Sprite menuBackground;
     private MenuButton buttonPlay;
     private MenuButton buttonOptions;
     private MenuButton infoButton;
 
     public MenuScreen(SnakeGame game) {
         this.game = game;
-
-        menuBackground = new Sprite(new Texture("menu_background.png"));
+        game.assets.loadMenuAssets();
+        menuBackground = new Sprite(game.assets.manager.get("menu/menu_background.png", Texture.class));
         camera = new OrthographicCamera(game.V_WIDTH, game.V_HEIGHT);
         camera.translate(camera.viewportWidth/2, camera.viewportHeight/2);
         viewport = new FitViewport(game.V_WIDTH, game.V_HEIGHT, camera);
@@ -42,10 +41,14 @@ public class MenuScreen implements Screen {
     }
 
     private void initializeStage() {
-        buttonPlay = new MenuButton(stage, calculateButtonPositionY(1), "play_button.png");
-        buttonOptions = new MenuButton(stage, calculateButtonPositionY(2), "options_button.png");
-        infoButton = new MenuButton(stage);
+        buttonPlay = new MenuButton(stage, calculateButtonPositionY(1),
+                game.assets.manager.get("menu/play_button.png", Texture.class));
 
+        buttonOptions = new MenuButton(stage, calculateButtonPositionY(2),
+                game.assets.manager.get("menu/options_button.png", Texture.class));
+
+        infoButton = new MenuButton(stage,
+                game.assets.manager.get("menu/info_button.png", Texture.class));
     }
 
     private float calculateButtonPositionY(int buttonNumber) {

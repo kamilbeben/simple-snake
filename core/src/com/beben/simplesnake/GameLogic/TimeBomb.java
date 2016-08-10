@@ -16,8 +16,8 @@ public class TimeBomb extends Sprite {
     private boolean alive;
     public float lifeTime;
 
-    public TimeBomb() {
-        super(new Texture("default/timebomb.png"));
+    public TimeBomb(Texture texture) {
+        super(texture);
         position = new Position();
         randomizePosition();
         alive = false;

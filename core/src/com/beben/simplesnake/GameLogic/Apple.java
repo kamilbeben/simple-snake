@@ -14,8 +14,8 @@ public class Apple extends Sprite{
 
     public Position position;
 
-    public Apple() {
-        super(new Texture("default/apple.png"));
+    public Apple(Texture texture) {
+        super(texture);
         position = new Position();
         randomizePosition();
     }

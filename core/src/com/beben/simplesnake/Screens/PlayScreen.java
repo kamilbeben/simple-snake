@@ -5,10 +5,12 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.beben.simplesnake.GameLogic.Apple;
+import com.beben.simplesnake.GameLogic.GameState;
 import com.beben.simplesnake.GameLogic.TimeBomb;
 import com.beben.simplesnake.GameLogic.GameInterface;
 import com.beben.simplesnake.GameLogic.GameText;
@@ -34,25 +36,28 @@ public class PlayScreen implements Screen {
     private TimeBomb timeBomb;
     private Apple apple;
 
-    private boolean gameIsNotOverYet;
+    private GameState state;
+    private boolean vibrated = false;
 
 
 
     public PlayScreen(SnakeGame game) {
         this.game = game;
+        state = new GameState();
+        game.assets.loadGameAssets();
         camera = new OrthographicCamera(game.V_WIDTH, game.V_HEIGHT);
         camera.translate(camera.viewportWidth/2, camera.viewportHeight/2);
         viewport = new FitViewport(game.V_WIDTH, game.V_HEIGHT, camera);
 
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
-        gameInterface = new GameInterface(stage);
-        theme = new GameTheme();
-        player = new Player();
-        apple = new Apple();
-        timeBomb = new TimeBomb();
-        gameText = new GameText();
-        gameIsNotOverYet = true;
+        gameInterface = new GameInterface(stage, game.assets);
+        theme = new GameTheme(game.assets.textureHolder);
+        player = new Player(game.assets.textureHolder);
+        apple = new Apple(game.assets.textureHolder.snack_APPLE);
+        timeBomb = new TimeBomb(game.assets.textureHolder.snack_TIMEBOMB);
+        gameText = new GameText(game.assets.manager.get(
+                "fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class));
     }
 
 
@@ -79,12 +84,11 @@ public class PlayScreen implements Screen {
     }
 
     private void update() {
-        gameText.update(player.getPoints(), gameIsNotOverYet);
-        if (gameIsNotOverYet) {
+        gameText.update(player.getPoints(), state);
+        if (state.isContinue()) {
             timeBomb.update();
-
+            player.update();
         }
-        player.update();
         checkForCollisionsWithItself();
         checkForCollisionsWithWalls();
         checkForCollisionsWithSnacks();
@@ -117,13 +121,19 @@ public class PlayScreen implements Screen {
 
     private void gameOver() {
         player.stopMoving();
-        gameIsNotOverYet = false;
+        state.setOver();
+        if (game.config.vibrations) {
+            if (!vibrated) {
+                Gdx.input.vibrate(40);
+                vibrated = true;
+            }
+        }
         if (Gdx.input.justTouched()) {
             game.setScreen(new PlayScreen(game));
             dispose();
         }
-        //TODO - vibrations?
     }
+
 
     private void handleUserInput() {
 
@@ -151,13 +161,11 @@ public class PlayScreen implements Screen {
             }
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.P) || gameInterface.pauseButton.isClicked()) {
-            pauseGame();
+        if (gameInterface.pauseButton.isClicked() && state.isContinue()) {
+            state.setPause();
+        } else if (state.isPause() && Gdx.input.justTouched()) {
+            state.switchPause();
         }
-
-    }
-
-    private void pauseGame() {
 
     }
 

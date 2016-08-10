@@ -18,25 +18,24 @@ public class MenuButton {
     public static final int buttonHeight = 32;
     private Button button;
     private Texture texture;
-    private String textureFileName;
     public boolean clicked = false;
 
-    public MenuButton(Stage stage, Position position, String textureFileName) {
-        this.textureFileName = textureFileName;
+    public MenuButton(Stage stage, Position position, Texture texture) {
+        this.texture = texture;
         setMenuButtonStyleAndPosition( generateButtonSkinFromFile(), position);
         setButtonListener();
         stage.addActor(button);
     }
 
-    public MenuButton(Stage stage, float positionY, String textureFileName) {
-        this.textureFileName = textureFileName;
+    public MenuButton(Stage stage, float positionY, Texture texture) {
+        this.texture = texture;
         setMenuButtonStyleAndPosition( generateButtonSkinFromFile(), positionY);
         setButtonListener();
         stage.addActor(button);
     }
 
-    public MenuButton(Stage stage) {
-        textureFileName = "info_button.png";
+    public MenuButton(Stage stage, Texture texture) {
+        this.texture = texture;
         setInfoButtonStyleAndPosition( generateButtonSkinFromFile() );
         setButtonListener();
         stage.addActor(button);
@@ -46,7 +45,6 @@ public class MenuButton {
         button.addListener(new InputListener() {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 clicked = true;
-                System.out.println("Clicked " + textureFileName);
                 return true;
             }
         });
@@ -75,7 +73,6 @@ public class MenuButton {
     }
 
     private Skin generateButtonSkinFromFile() {
-        texture = new Texture(textureFileName);
         texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         Skin skin = new Skin();
@@ -92,10 +89,6 @@ public class MenuButton {
         button.setPosition(SnakeGame.V_WIDTH - texture.getWidth() - 4, SnakeGame.V_HEIGHT - texture.getHeight() - 4);
         button.setWidth(texture.getWidth());
         button.setHeight(texture.getHeight());
-    }
-
-    public String getFileName() {
-        return textureFileName;
     }
 
     public boolean isClicked() {

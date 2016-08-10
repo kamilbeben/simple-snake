@@ -5,11 +5,15 @@ package com.beben.simplesnake;
  */
 public class GameConfig {
 
-    public boolean walls = false;
+    public boolean walls;
+    public boolean vibrations;
+    public String style;
 
 
     public GameConfig() {
-
+        walls = false;
+        vibrations = true;
+        style = "default/";
     }
 
 }

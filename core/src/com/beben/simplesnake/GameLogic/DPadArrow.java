@@ -6,7 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.beben.simplesnake.SnakeGame;
 
 /**
  * Created by bezik on 09.08.16.
@@ -17,10 +16,18 @@ public class DPadArrow {
     private Texture texture;
     public boolean clicked = false;
 
-    public DPadArrow(Stage stage, Position position, String textureFileName) {
-        setButtonStyleAndPosition( generateButtonSkinFromFile(textureFileName), position);
+    public DPadArrow(Stage stage, Position position, Texture texture) {
+        this.texture = texture;
+        setButtonStyleAndPosition( generateButtonSkinFromTexture(), position);
         setButtonListener();
         stage.addActor(button);
+    }
+
+    private Skin generateButtonSkinFromTexture() {
+        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+        Skin skin = new Skin();
+        skin.add("texture", texture);
+        return skin;
     }
 
     private void setButtonStyleAndPosition(Skin skin, Position position) {
@@ -32,14 +39,6 @@ public class DPadArrow {
         button.setPosition(position.x, position.y);
         button.setWidth(texture.getWidth());
         button.setHeight(texture.getHeight());
-    }
-
-    private Skin generateButtonSkinFromFile(String textureFileName) {
-        texture = new Texture(textureFileName);
-        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-        Skin skin = new Skin();
-        skin.add("texture", texture);
-        return skin;
     }
 
     private void setButtonListener() {

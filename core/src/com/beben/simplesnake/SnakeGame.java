@@ -11,12 +11,16 @@ public class SnakeGame extends Game {
 	public static final int BORDER = 6;
 	public static final int ARENA_WIDTH = 228;
 	public GameConfig config;
+	public Assets assets;
 
 	@Override
 	public void create () {
+		assets = new Assets();
 		config = new GameConfig();
+		assets.setStyle(config.style);
 		batch = new SpriteBatch();
 		setScreen(new MenuScreen(this));
+
 	}
 
 	@Override
@@ -27,5 +31,6 @@ public class SnakeGame extends Game {
 	@Override
 	public void dispose () {
 		batch.dispose();
+		assets.dispose();
 	}
 }

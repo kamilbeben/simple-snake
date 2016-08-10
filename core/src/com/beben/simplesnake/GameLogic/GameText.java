@@ -18,22 +18,27 @@ public class GameText {
     private CharSequence points;
     private float timeHelper;
     private boolean gameOver;
+    private boolean pause;
 
-    public GameText() {
+    public GameText(BitmapFont bitmapFont) {
+        font = bitmapFont;
         gameOver = false;
-        font = new BitmapFont(Gdx.files.internal("fonts/font_pixeled_gradient_lightgrey.fnt")); // _lightgrey
+        pause = false;
+        timeHelper = 0;
         this.timer = new String("00");
         this.points = new String("0");
-        timeHelper = 0;
     }
 
-    public void update(int points, boolean gameIsNotOverYet) {
-        if (gameIsNotOverYet) {
+    public void update(int points, GameState state) {
+        if (state.isContinue()) {
             timeHelper += Gdx.graphics.getDeltaTime();
             this.timer = new String(Integer.toString((int) timeHelper));
             this.points = new String(Integer.toString(points));
-        } else {
+            pause = false;
+        } else if (state.isOver()) {
             gameOver = true;
+        } else if (state.isPause()) {
+            pause = true;
         }
     }
 
@@ -45,6 +50,10 @@ public class GameText {
                     SnakeGame.V_HEIGHT - 106);
             font.draw(batch, "Try again", center("Try again"),
                     SnakeGame.V_HEIGHT - 121);
+        }
+        if (pause) {
+            font.draw(batch, "Pause", center("Pause"),
+                SnakeGame.V_HEIGHT - 106);
         }
     }
 
