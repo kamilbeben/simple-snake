@@ -25,9 +25,14 @@ public class Assets implements Disposable {
     public void loadOptionsAssets() {
         manager.clear();
         manager.load("menu/menu_background.png", Texture.class);
-        manager.load("options_vibrations_ON.png", Texture.class);
-        manager.load("options_vibrations_OFF.png", Texture.class);
-
+        manager.load("menu/options_vibrations_ON.png", Texture.class);
+        manager.load("menu/options_vibrations_OFF.png", Texture.class);
+        waitForLoadingToComplete();
+        textureHolder = new TextureHolder(
+                manager.get("menu/menu_background.png", Texture.class),
+                manager.get("menu/options_vibrations_ON.png", Texture.class),
+                manager.get("menu/options_vibrations_OFF.png", Texture.class)
+        );
     }
     public void loadMenuAssets() {
         manager.clear();

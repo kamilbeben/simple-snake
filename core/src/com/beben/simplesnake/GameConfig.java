@@ -18,4 +18,9 @@ public class GameConfig {
         style = "default/";
     }
 
+    public void switchVibrations() {
+        if (vibrations) vibrations = false;
+        else vibrations = true;
+    }
+
 }

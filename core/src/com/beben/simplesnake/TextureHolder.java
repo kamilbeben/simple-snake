@@ -26,6 +26,10 @@ public class TextureHolder {
     public Texture menu_OPTIONS;
     public Texture menu_INFO;
 
+    public Texture options_BACKGROUND;
+    public Texture options_VIBRATION_ON;
+    public Texture options_VIBRATION_OFF;
+
 
 
 
@@ -50,5 +54,11 @@ public class TextureHolder {
         this.menu_PLAY = menu_PLAY;
         this.menu_OPTIONS = menu_OPTIONS;
         this.menu_INFO = menu_INFO;
+    }
+
+    public TextureHolder(Texture options_BACKGROUND, Texture options_VIBRATION_ON, Texture options_VIBRATION_OFF) {
+        this.options_BACKGROUND = options_BACKGROUND;
+        this.options_VIBRATION_ON = options_VIBRATION_ON;
+        this.options_VIBRATION_OFF = options_VIBRATION_OFF;
     }
 }

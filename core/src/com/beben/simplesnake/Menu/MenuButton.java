@@ -98,4 +98,12 @@ public class MenuButton {
         } else return false;
     }
 
+    public void setTexture(Stage stage, Texture texture) {
+        button.remove();
+        this.texture = texture;
+        setMenuButtonStyleAndPosition( generateButtonSkinFromFile(), button.getY());
+        setButtonListener();
+        stage.addActor(button);
+    }
+
 }
