@@ -7,6 +7,7 @@ public class GameConfig {
 
     private static final String style_DEFAULT   = "default/";
     private static final String style_MODERN    = "modern/";
+    //TODO create some map enum, class or whatever
 
     public boolean walls;
     public boolean vibrations;
