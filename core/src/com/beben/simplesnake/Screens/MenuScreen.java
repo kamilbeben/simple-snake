@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -31,24 +30,28 @@ public class MenuScreen implements Screen {
     public MenuScreen(SnakeGame game) {
         this.game = game;
         game.assets.loadMenuAssets();
-        menuBackground = new Sprite(game.assets.manager.get("menu/menu_background.png", Texture.class));
+        menuBackground = new Sprite(game.assets.textureHolder.menu_BACKGROUND);
+        initializeStage();
+    }
+
+    private void initializeStage() {
         camera = new OrthographicCamera(game.V_WIDTH, game.V_HEIGHT);
         camera.translate(camera.viewportWidth/2, camera.viewportHeight/2);
         viewport = new FitViewport(game.V_WIDTH, game.V_HEIGHT, camera);
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
-        initializeStage();
+        addActors();
     }
 
-    private void initializeStage() {
+    private void addActors() {
         buttonPlay = new MenuButton(stage, calculateButtonPositionY(1),
-                game.assets.manager.get("menu/play_button.png", Texture.class));
+                game.assets.textureHolder.menu_PLAY);
 
         buttonOptions = new MenuButton(stage, calculateButtonPositionY(2),
-                game.assets.manager.get("menu/options_button.png", Texture.class));
+                game.assets.textureHolder.menu_OPTIONS);
 
         infoButton = new MenuButton(stage,
-                game.assets.manager.get("menu/info_button.png", Texture.class));
+                game.assets.textureHolder.menu_INFO);
     }
 
     private float calculateButtonPositionY(int buttonNumber) {

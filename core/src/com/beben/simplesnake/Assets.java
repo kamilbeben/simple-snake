@@ -21,7 +21,6 @@ public class Assets implements Disposable {
     public void setStyle(String style) {
         this.style = style;
     }
-
     public void loadMenuAssets() {
         manager.clear();
         manager.load("menu/menu_background.png", Texture.class);
@@ -29,6 +28,12 @@ public class Assets implements Disposable {
         manager.load("menu/options_button.png", Texture.class);
         manager.load("menu/info_button.png", Texture.class);
         waitForLoadingToComplete();
+        textureHolder = new TextureHolder(
+                manager.get("menu/menu_background.png", Texture.class),
+                manager.get("menu/play_button.png", Texture.class),
+                manager.get("menu/options_button.png", Texture.class),
+                manager.get("menu/info_button.png", Texture.class)
+        );
     }
 
     public void loadGameAssets() {
