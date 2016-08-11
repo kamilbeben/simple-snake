@@ -26,9 +26,9 @@ public class PlayScreen implements Screen {
     private SnakeGame game;
     private OrthographicCamera camera;
     private Viewport viewport;
-    public Stage stage;
+    private Stage stage;
 
-    public GameTheme theme;
+    private GameTheme theme;
     private GameText gameText;
     private GameInterface gameInterface;
 
@@ -36,26 +36,36 @@ public class PlayScreen implements Screen {
     private TimeBomb timeBomb;
     private Apple apple;
 
-    private GameState state;
+    private GameState state = new GameState();
     private boolean vibrated = false;
 
 
 
     public PlayScreen(SnakeGame game) {
         this.game = game;
-        state = new GameState();
         game.assets.loadGameAssets();
+        initializeStage();
+        initializeDrawableElements();
+        initializeGUI();
+    }
+
+    private void initializeStage() {
         camera = new OrthographicCamera(game.V_WIDTH, game.V_HEIGHT);
         camera.translate(camera.viewportWidth/2, camera.viewportHeight/2);
         viewport = new FitViewport(game.V_WIDTH, game.V_HEIGHT, camera);
-
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
-        gameInterface = new GameInterface(stage, game.assets);
-        theme = new GameTheme(game.assets.textureHolder);
+    }
+
+    private void initializeDrawableElements() {
         player = new Player(game.assets.textureHolder);
         apple = new Apple(game.assets.textureHolder.snack_APPLE);
         timeBomb = new TimeBomb(game.assets.textureHolder.snack_TIMEBOMB);
+    }
+
+    private void initializeGUI() {
+        gameInterface = new GameInterface(stage, game.assets);
+        theme = new GameTheme(game.assets.textureHolder);
         gameText = new GameText(game.assets.manager.get(
                 "fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class));
     }

@@ -45,11 +45,9 @@ public class GameState {
     public void switchPause() {
         if (state == STATE.PAUSED) {
             state = STATE.CONTINUES;
-            System.out.println("Cnt");
         }
         else if (state == STATE.CONTINUES){
             state = STATE.PAUSED;
-            System.out.println("PSD");
         }
     }
 }
