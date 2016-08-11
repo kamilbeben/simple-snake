@@ -67,7 +67,7 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
             switchVibrations();
         }
     }
-    
+
     private void switchVibrations() { //TODO LOAD DEFAULT ICON IN DEPENDENCE OF GAME.CONFIG.VIBRATION
         System.out.println("Switch");
         if ( game.config.vibrations ) {
