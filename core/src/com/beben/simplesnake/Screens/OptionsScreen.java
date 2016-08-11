@@ -41,8 +41,18 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
     }
 
     private void addActors() {
-        buttonVibrations = new MenuButton(stage, 300,
-                game.assets.textureHolder.options_VIBRATION_ON);
+        initializeVibrationButton();
+    }
+
+    private void initializeVibrationButton() {
+        float position_y = 300;
+        if (game.config.vibrations) {
+            buttonVibrations = new MenuButton(stage, position_y,
+                    game.assets.textureHolder.options_VIBRATION_ON);
+        } else {
+            buttonVibrations = new MenuButton(stage, position_y,
+                    game.assets.textureHolder.options_VIBRATION_OFF);
+        }
     }
 
     @Override
@@ -69,13 +79,13 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
     }
 
     private void switchVibrations() { //TODO LOAD DEFAULT ICON IN DEPENDENCE OF GAME.CONFIG.VIBRATION
-        System.out.println("Switch");
         if ( game.config.vibrations ) {
             buttonVibrations.setTexture(stage, game.assets.textureHolder.options_VIBRATION_OFF);
         } else {
             buttonVibrations.setTexture(stage, game.assets.textureHolder.options_VIBRATION_ON);
         }
         game.config.switchVibrations();
+        System.out.println(game.config.vibrations);
     }
 
     @Override

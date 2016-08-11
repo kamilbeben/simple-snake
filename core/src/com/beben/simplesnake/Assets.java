@@ -53,7 +53,6 @@ public class Assets implements Disposable {
         manager.clear();
         manager.load("fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class);
         manager.load(style + "pause_button.png", Texture.class);
-        manager.load(style + "back_button.png", Texture.class);
         manager.load("dpad/up.png", Texture.class);
         manager.load("dpad/left.png", Texture.class);
         manager.load("dpad/right.png", Texture.class);
@@ -72,7 +71,6 @@ public class Assets implements Disposable {
                 manager.get("dpad/left.png", Texture.class),
                 manager.get("dpad/right.png", Texture.class),
                 manager.get(style + "pause_button.png", Texture.class),
-                manager.get(style + "back_button.png", Texture.class),
                 manager.get(style + "snake_head_texture.png", Texture.class),
                 manager.get(style + "snake_body_texture.png", Texture.class),
                 manager.get(style + "snake_end_texture.png", Texture.class),

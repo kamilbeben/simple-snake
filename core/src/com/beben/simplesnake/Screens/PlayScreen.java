@@ -160,7 +160,7 @@ public class PlayScreen implements Screen {
             moveDown();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.BACKSPACE) || gameInterface.backButton.isClicked()) {
+        if (Gdx.input.isKeyPressed(Input.Keys.BACKSPACE)) { //TODO physical return button
             game.setScreen(new MenuScreen(game));
             try {
                 dispose();

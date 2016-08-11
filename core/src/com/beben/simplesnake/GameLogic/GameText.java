@@ -43,8 +43,8 @@ public class GameText {
     }
 
     public void render(Batch batch) {
-        font.draw(batch, points, 8, 157);
-        font.draw(batch, timer, calculatePositionX(timer.toString()), 157);
+        font.draw(batch, points, 10, 156);
+        font.draw(batch, timer, calculatePositionX(timer.toString()), 156);
         if (gameOver) {
             font.draw(batch, "Game over!", center("Game over!"),
                     SnakeGame.V_HEIGHT - 106);

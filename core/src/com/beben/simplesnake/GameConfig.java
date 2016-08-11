@@ -13,7 +13,7 @@ public class GameConfig {
 
     public GameConfig() {
         walls = false;
-        vibrations = true;
+        vibrations = false;
         nitro = true;
         style = "default/";
     }

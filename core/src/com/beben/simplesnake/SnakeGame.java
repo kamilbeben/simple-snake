@@ -20,7 +20,7 @@ public class SnakeGame extends Game {
 		config = new GameConfig();
 		assets.setStyle(config.style);
 		batch = new SpriteBatch();
-		setScreen(new OptionsScreen(this));
+		setScreen(new MenuScreen(this));
 
 	}
 
