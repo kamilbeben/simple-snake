@@ -5,22 +5,37 @@ package com.beben.simplesnake;
  */
 public class GameConfig {
 
+    private static final String style_DEFAULT   = "default/";
+    private static final String style_MODERN    = "modern/";
+
     public boolean walls;
     public boolean vibrations;
-    public boolean nitro; //TODO nitro optional
     public String style;
 
 
     public GameConfig() {
         walls = false;
         vibrations = false;
-        nitro = true;
-        style = "default/";
+        style = style_DEFAULT; //default and modern
     }
 
     public void switchVibrations() {
         if (vibrations) vibrations = false;
         else vibrations = true;
+    }
+
+    public void switchStyles() {
+        if (style.equals(style_DEFAULT)) {
+            style = style_MODERN;
+        } else if (style.equals(style_MODERN)) {
+            style = style_DEFAULT;
+        }
+    }
+
+    public boolean isDefault() {
+        if (style.equals(style_DEFAULT)) {
+            return true;
+        } else return false;
     }
 
 }

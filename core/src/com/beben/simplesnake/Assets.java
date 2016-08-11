@@ -27,11 +27,25 @@ public class Assets implements Disposable {
         manager.load("menu/menu_background.png", Texture.class);
         manager.load("menu/options_vibrations_ON.png", Texture.class);
         manager.load("menu/options_vibrations_OFF.png", Texture.class);
+        manager.load("menu/style_preview_modern.png", Texture.class);
+        manager.load("menu/style_preview_retro.png", Texture.class);
+        manager.load("menu/switch_right.png", Texture.class);
+        manager.load("menu/switch_left.png", Texture.class);
+        manager.load("menu/return_button.png", Texture.class);
+        manager.load("preview_maps/classic_walls.png", Texture.class);
+        manager.load("preview_maps/classic_nowalls.png", Texture.class);
         waitForLoadingToComplete();
         textureHolder = new TextureHolder(
                 manager.get("menu/menu_background.png", Texture.class),
                 manager.get("menu/options_vibrations_ON.png", Texture.class),
-                manager.get("menu/options_vibrations_OFF.png", Texture.class)
+                manager.get("menu/options_vibrations_OFF.png", Texture.class),
+                manager.get("menu/style_preview_modern.png", Texture.class),
+                manager.get("menu/style_preview_retro.png", Texture.class),
+                manager.get("menu/switch_right.png", Texture.class),
+                manager.get("menu/switch_left.png", Texture.class),
+                manager.get("menu/return_button.png", Texture.class),
+                manager.get("preview_maps/classic_walls.png", Texture.class),
+                manager.get("preview_maps/classic_nowalls.png", Texture.class)
         );
     }
     public void loadMenuAssets() {

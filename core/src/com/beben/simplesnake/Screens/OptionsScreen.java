@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.beben.simplesnake.GameLogic.Position;
 import com.beben.simplesnake.Menu.MenuButton;
 import com.beben.simplesnake.SnakeGame;
 
@@ -19,16 +20,43 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
     private SnakeGame game;
     private OrthographicCamera camera;
     private Viewport viewport;
-    public Stage stage;
+    private Stage stage;
+
     private Sprite background;
+    private Sprite stylePreview;
+    private Sprite mapPreview;
+
     private MenuButton buttonVibrations;
+    private MenuButton buttonSwitchRight;
+    private MenuButton buttonSwitchLeft;
 
 
     public OptionsScreen(SnakeGame game) {
         this.game = game;
         game.assets.loadOptionsAssets();
-        background = new Sprite(game.assets.textureHolder.options_BACKGROUND);
+        initializeSprites();
         initializeStage();
+    }
+
+    private void initializeSprites() {
+        background = new Sprite(game.assets.textureHolder.options_BACKGROUND);
+        initializeStylePreview();
+        initializeMapPreview();
+    }
+
+    private void initializeStylePreview() {
+        float position_y = 200;
+        if (game.config.isDefault()) {
+            stylePreview = new Sprite(game.assets.textureHolder.options_stylePreview_DEFAULT);
+        } else {
+            stylePreview = new Sprite(game.assets.textureHolder.options_stylePreview_MODERN);
+        }
+        stylePreview.setPosition((SnakeGame.V_WIDTH/2) - (stylePreview.getWidth()/2),
+                position_y);
+    }
+
+    private void initializeMapPreview() {
+
     }
 
     private void initializeStage() {
@@ -42,6 +70,7 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
 
     private void addActors() {
         initializeVibrationButton();
+        initializeSwitchStyleButtons();
     }
 
     private void initializeVibrationButton() {
@@ -53,6 +82,20 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
             buttonVibrations = new MenuButton(stage, position_y,
                     game.assets.textureHolder.options_VIBRATION_OFF);
         }
+    }
+
+    private void initializeSwitchStyleButtons() {
+        float spacing = 2;
+
+        buttonSwitchRight = new MenuButton(stage, new Position(
+                stylePreview.getX() + stylePreview.getWidth() + spacing,
+                stylePreview.getY()),
+                game.assets.textureHolder.options_switch_RIGHT);
+
+        buttonSwitchLeft = new MenuButton(stage, new Position(
+                stylePreview.getX() - spacing - game.assets.textureHolder.options_switch_RIGHT.getWidth(),
+                stylePreview.getY()),
+                game.assets.textureHolder.options_switch_LEFT);
     }
 
     @Override
@@ -68,6 +111,7 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
         background.draw(game.batch);
+        stylePreview.draw(game.batch);
         game.batch.end();
         stage.draw();
     }

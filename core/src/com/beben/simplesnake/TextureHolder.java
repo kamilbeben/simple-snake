@@ -28,6 +28,13 @@ public class TextureHolder {
     public Texture options_BACKGROUND;
     public Texture options_VIBRATION_ON;
     public Texture options_VIBRATION_OFF;
+    public Texture options_stylePreview_MODERN;
+    public Texture options_stylePreview_DEFAULT;
+    public Texture options_switch_RIGHT;
+    public Texture options_switch_LEFT;
+    public Texture options_button_RETURN;
+    public Texture options_mapPreview_CLASSIC_WALLS;
+    public Texture options_mapPreview_CLASSIC_NOWALLS;
 
 
 
@@ -54,9 +61,16 @@ public class TextureHolder {
         this.menu_INFO = menu_INFO;
     }
 
-    public TextureHolder(Texture options_BACKGROUND, Texture options_VIBRATION_ON, Texture options_VIBRATION_OFF) {
+    public TextureHolder(Texture options_BACKGROUND, Texture options_VIBRATION_ON, Texture options_VIBRATION_OFF, Texture options_stylePreview_MODERN, Texture options_stylePreview_DEFAULT, Texture options_switch_RIGHT, Texture options_switch_LEFT, Texture options_button_RETURN, Texture options_mapPreview_CLASSIC_WALLS, Texture options_mapPreview_CLASSIC_NOWALLS) {
         this.options_BACKGROUND = options_BACKGROUND;
         this.options_VIBRATION_ON = options_VIBRATION_ON;
         this.options_VIBRATION_OFF = options_VIBRATION_OFF;
+        this.options_stylePreview_MODERN = options_stylePreview_MODERN;
+        this.options_stylePreview_DEFAULT = options_stylePreview_DEFAULT;
+        this.options_switch_RIGHT = options_switch_RIGHT;
+        this.options_switch_LEFT = options_switch_LEFT;
+        this.options_button_RETURN = options_button_RETURN;
+        this.options_mapPreview_CLASSIC_WALLS = options_mapPreview_CLASSIC_WALLS;
+        this.options_mapPreview_CLASSIC_NOWALLS = options_mapPreview_CLASSIC_NOWALLS;
     }
 }
