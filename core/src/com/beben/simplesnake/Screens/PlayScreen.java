@@ -16,6 +16,7 @@ import com.beben.simplesnake.GameLogic.GameInterface;
 import com.beben.simplesnake.GameLogic.GameText;
 import com.beben.simplesnake.GameLogic.GameTheme;
 import com.beben.simplesnake.GameLogic.Player;
+import com.beben.simplesnake.GameLogic.Timer;
 import com.beben.simplesnake.SnakeGame;
 
 /**
@@ -138,10 +139,6 @@ public class PlayScreen implements Screen {
                 vibrated = true;
             }
         }
-        if (Gdx.input.justTouched()) {
-            game.setScreen(new PlayScreen(game));
-            dispose();
-        }
     }
 
 
@@ -175,6 +172,11 @@ public class PlayScreen implements Screen {
             state.setPause();
         } else if (state.isPause() && Gdx.input.justTouched()) {
             state.switchPause();
+        }
+
+        if (state.isOver() && Gdx.input.justTouched()) {
+            game.setScreen(new PlayScreen(game));
+            dispose();
         }
 
     }

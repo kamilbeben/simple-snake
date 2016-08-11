@@ -24,7 +24,7 @@ public class DPadArrow {
     }
 
     private Skin generateButtonSkinFromTexture() {
-        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+//        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         Skin skin = new Skin();
         skin.add("texture", texture);
         return skin;

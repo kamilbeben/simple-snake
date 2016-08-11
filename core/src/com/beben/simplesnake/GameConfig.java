@@ -7,12 +7,14 @@ public class GameConfig {
 
     public boolean walls;
     public boolean vibrations;
+    public boolean nitro; //TODO nitro optional
     public String style;
 
 
     public GameConfig() {
         walls = false;
         vibrations = true;
+        nitro = true;
         style = "default/";
     }
 
