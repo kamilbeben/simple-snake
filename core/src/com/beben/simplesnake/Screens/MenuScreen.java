@@ -21,7 +21,7 @@ public class MenuScreen implements Screen {
     private Viewport viewport;
     public Stage stage;
 
-    private static final int buttonSpacing = 32; //TODO ADJUST
+    private static final int buttonSpacing = 16; //TODO ADJUST
     private Sprite menuBackground;
     private MenuButton buttonPlay;
     private MenuButton buttonOptions;

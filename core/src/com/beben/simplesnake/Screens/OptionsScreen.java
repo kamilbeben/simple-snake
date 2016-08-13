@@ -5,19 +5,20 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.beben.simplesnake.GameLogic.Position;
 import com.beben.simplesnake.Menu.MenuButton;
+import com.beben.simplesnake.Options.OptionsText;
 import com.beben.simplesnake.SnakeGame;
 
 /**
  * Created by bezik on 09.08.16.
  */
-public class OptionsScreen implements Screen { //TODO OPTIONS
-
+public class OptionsScreen implements Screen {
     private SnakeGame game;
     private OrthographicCamera camera;
     private Viewport viewport;
@@ -33,12 +34,18 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
     private MenuButton buttonMapSwitchRight;
     private MenuButton buttonMapSwitchLeft;
 
+    private OptionsText text; //TODO maybe smaller font?
+    private static final float itemSpacing = 32;
+
 
     public OptionsScreen(SnakeGame game) {
         this.game = game;
         game.assets.loadOptionsAssets();
         initializeSprites();
         initializeStage();
+        text = new OptionsText(game.assets.manager.get(
+                "fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class), stylePreview.getY(),
+                mapPreview.getY(), buttonVibrations.getY());
     }
 
     private void initializeSprites() {
@@ -59,7 +66,8 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
     }
 
     private void initializeMapPreview() {
-        float position_y = 200;
+        float position_y = stylePreview.getY() -
+                game.assets.textureHolder.options_mapPreview_CLASSIC_WALLS.getHeight() - itemSpacing;
         if (game.config.map.isClassicWALLS()) {
             mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_CLASSIC_WALLS);
         } else if (game.config.map.isClassicNOWALLS()) {
@@ -84,7 +92,8 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
     }
 
     private void initializeVibrationButton() {
-        float position_y = 100;
+        float position_y = mapPreview.getY() -
+                game.assets.textureHolder.options_VIBRATION_ON.getHeight() - itemSpacing;
         if (game.config.vibrations) {
             buttonVibrations = new MenuButton(stage, position_y,
                     game.assets.textureHolder.options_VIBRATION_ON);
@@ -131,6 +140,7 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
         drawSprites(game.batch);
+        text.render(game.batch);
         game.batch.end();
         stage.draw();
     }

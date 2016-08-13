@@ -106,4 +106,8 @@ public class MenuButton {
         stage.addActor(button);
     }
 
+    public float getY() {
+        return button.getY();
+    }
+
 }

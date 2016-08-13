@@ -24,6 +24,7 @@ public class Assets implements Disposable {
 
     public void loadOptionsAssets() {
         manager.clear();
+        manager.load("fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class);
         manager.load("menu/menu_background.png", Texture.class);
         manager.load("menu/options_vibrations_ON.png", Texture.class);
         manager.load("menu/options_vibrations_OFF.png", Texture.class);
