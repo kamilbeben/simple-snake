@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -27,8 +28,10 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
     private Sprite mapPreview;
 
     private MenuButton buttonVibrations;
-    private MenuButton buttonSwitchRight;
-    private MenuButton buttonSwitchLeft;
+    private MenuButton buttonStyleSwitchRight;
+    private MenuButton buttonStyleSwitchLeft;
+    private MenuButton buttonMapSwitchRight;
+    private MenuButton buttonMapSwitchLeft;
 
 
     public OptionsScreen(SnakeGame game) {
@@ -45,10 +48,10 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
     }
 
     private void initializeStylePreview() {
-        float position_y = 200;
-        if (game.config.isDefault()) {
+        float position_y = 300;
+        if (game.config.theme.isDefault()) {
             stylePreview = new Sprite(game.assets.textureHolder.options_stylePreview_DEFAULT);
-        } else {
+        } else if (game.config.theme.isModern()) {
             stylePreview = new Sprite(game.assets.textureHolder.options_stylePreview_MODERN);
         }
         stylePreview.setPosition((SnakeGame.V_WIDTH/2) - (stylePreview.getWidth()/2),
@@ -56,7 +59,14 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
     }
 
     private void initializeMapPreview() {
-
+        float position_y = 200;
+        if (game.config.map.isClassicWALLS()) {
+            mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_CLASSIC_WALLS);
+        } else if (game.config.map.isClassicNOWALLS()) {
+            mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_CLASSIC_NOWALLS);
+        }
+        mapPreview.setPosition((SnakeGame.V_WIDTH/2) - (stylePreview.getWidth()/2),
+                position_y);
     }
 
     private void initializeStage() {
@@ -74,7 +84,7 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
     }
 
     private void initializeVibrationButton() {
-        float position_y = 300;
+        float position_y = 100;
         if (game.config.vibrations) {
             buttonVibrations = new MenuButton(stage, position_y,
                     game.assets.textureHolder.options_VIBRATION_ON);
@@ -87,14 +97,24 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
     private void initializeSwitchStyleButtons() {
         float spacing = 2;
 
-        buttonSwitchRight = new MenuButton(stage, new Position(
+        buttonStyleSwitchRight = new MenuButton(stage, new Position(
                 stylePreview.getX() + stylePreview.getWidth() + spacing,
                 stylePreview.getY()),
                 game.assets.textureHolder.options_switch_RIGHT);
 
-        buttonSwitchLeft = new MenuButton(stage, new Position(
+        buttonStyleSwitchLeft = new MenuButton(stage, new Position(
                 stylePreview.getX() - spacing - game.assets.textureHolder.options_switch_RIGHT.getWidth(),
                 stylePreview.getY()),
+                game.assets.textureHolder.options_switch_LEFT);
+
+        buttonMapSwitchRight = new MenuButton(stage, new Position(
+                mapPreview.getX() + mapPreview.getWidth() + spacing,
+                mapPreview.getY()),
+                game.assets.textureHolder.options_switch_RIGHT);
+
+        buttonMapSwitchLeft = new MenuButton(stage, new Position(
+                mapPreview.getX() - spacing - game.assets.textureHolder.options_switch_RIGHT.getWidth(),
+                mapPreview.getY()),
                 game.assets.textureHolder.options_switch_LEFT);
     }
 
@@ -110,19 +130,40 @@ public class OptionsScreen implements Screen { //TODO OPTIONS
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.setProjectionMatrix(camera.combined);
         game.batch.begin();
-        background.draw(game.batch);
-        stylePreview.draw(game.batch);
+        drawSprites(game.batch);
         game.batch.end();
         stage.draw();
+    }
+
+    private void drawSprites(Batch batch) {
+        background.draw(batch);
+        stylePreview.draw(batch);
+        mapPreview.draw(batch);
     }
 
     public void handleUserInput() {
         if ( buttonVibrations.isClicked() ) {
             switchVibrations();
         }
+        if ( buttonMapSwitchLeft.isClicked() ) {
+            game.config.map.switchLeft();
+            initializeMapPreview();
+        }
+        if ( buttonMapSwitchRight.isClicked() ) {
+            game.config.map.switchRight();
+            initializeMapPreview();
+        }
+        if ( buttonStyleSwitchLeft.isClicked() ) {
+            game.config.theme.switchStyles();
+            initializeStylePreview();
+        }
+        if ( buttonStyleSwitchRight.isClicked() ) {
+            game.config.theme.switchStyles();
+            initializeStylePreview();
+        }
     }
 
-    private void switchVibrations() { //TODO LOAD DEFAULT ICON IN DEPENDENCE OF GAME.CONFIG.VIBRATION
+    private void switchVibrations() {
         if ( game.config.vibrations ) {
             buttonVibrations.setTexture(stage, game.assets.textureHolder.options_VIBRATION_OFF);
         } else {

@@ -16,7 +16,6 @@ import com.beben.simplesnake.GameLogic.GameInterface;
 import com.beben.simplesnake.GameLogic.GameText;
 import com.beben.simplesnake.GameLogic.GameTheme;
 import com.beben.simplesnake.GameLogic.Player;
-import com.beben.simplesnake.GameLogic.Timer;
 import com.beben.simplesnake.SnakeGame;
 
 /**
@@ -112,9 +111,9 @@ public class PlayScreen implements Screen {
 
     private void checkForCollisionsWithWalls() {
         if (player.isCollidingWithWalls()) {
-            if (game.config.walls == true) {
+            if (game.config.map.areThereWalls()) {
                 gameOver();
-            } else if (game.config.walls == false) {
+            } else {
                 player.goThroughWall();
             }
         }

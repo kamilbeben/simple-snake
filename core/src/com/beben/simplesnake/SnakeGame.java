@@ -2,7 +2,6 @@ package com.beben.simplesnake;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.beben.simplesnake.Screens.MenuScreen;
-import com.beben.simplesnake.Screens.OptionsScreen;
 
 public class SnakeGame extends Game {
 
@@ -18,9 +17,9 @@ public class SnakeGame extends Game {
 	public void create () {
 		assets = new Assets();
 		config = new GameConfig();
-		assets.setStyle(config.style);
+		assets.setStyle(config.theme.getStyle());
 		batch = new SpriteBatch();
-		setScreen(new OptionsScreen(this));
+		setScreen(new MenuScreen(this));
 
 	}
 
