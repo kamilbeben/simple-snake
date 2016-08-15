@@ -33,6 +33,7 @@ public class OptionsScreen implements Screen {
     private MenuButton buttonStyleSwitchLeft;
     private MenuButton buttonMapSwitchRight;
     private MenuButton buttonMapSwitchLeft;
+    private MenuButton buttonReturn;
 
     private OptionsText text; //TODO maybe smaller font?
     private static final float itemSpacing = 32;
@@ -44,8 +45,8 @@ public class OptionsScreen implements Screen {
         initializeSprites();
         initializeStage();
         text = new OptionsText(game.assets.manager.get(
-                "fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class), stylePreview.getY(),
-                mapPreview.getY(), buttonVibrations.getY());
+                "fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class), mapPreview.getY(),
+                stylePreview.getY(), buttonVibrations.getY());
     }
 
     private void initializeSprites() {
@@ -89,6 +90,7 @@ public class OptionsScreen implements Screen {
     private void addActors() {
         initializeVibrationButton();
         initializeSwitchStyleButtons();
+        initializeReturnButton();
     }
 
     private void initializeVibrationButton() {
@@ -127,6 +129,12 @@ public class OptionsScreen implements Screen {
                 game.assets.textureHolder.options_switch_LEFT);
     }
 
+    private void initializeReturnButton() {
+        buttonReturn = new MenuButton(stage, new Position(8, 8),
+                game.assets.textureHolder.options_button_RETURN);
+    }
+
+
     @Override
     public void show() {
 
@@ -154,22 +162,25 @@ public class OptionsScreen implements Screen {
     public void handleUserInput() {
         if ( buttonVibrations.isClicked() ) {
             switchVibrations();
-        }
-        if ( buttonMapSwitchLeft.isClicked() ) {
+            game.config.savePreferences();
+        } else if ( buttonMapSwitchLeft.isClicked() ) {
             game.config.map.switchLeft();
             initializeMapPreview();
-        }
-        if ( buttonMapSwitchRight.isClicked() ) {
+            game.config.savePreferences();
+        } else if ( buttonMapSwitchRight.isClicked() ) {
             game.config.map.switchRight();
             initializeMapPreview();
-        }
-        if ( buttonStyleSwitchLeft.isClicked() ) {
+            game.config.savePreferences();
+        } else if ( buttonStyleSwitchLeft.isClicked() ) {
             game.config.theme.switchStyles();
             initializeStylePreview();
-        }
-        if ( buttonStyleSwitchRight.isClicked() ) {
+            game.config.savePreferences();
+        } else if ( buttonStyleSwitchRight.isClicked() ) {
             game.config.theme.switchStyles();
             initializeStylePreview();
+            game.config.savePreferences();
+        } else if (buttonReturn.isClicked()) {
+            game.setScreen(new MenuScreen(game));
         }
     }
 

@@ -13,7 +13,7 @@ public class OptionsMap {
     private boolean walls;
 
     public OptionsMap() {
-        value = TYPE.classic_nowalls; //TODO loading from file
+        value = TYPE.classic_nowalls;
         setProperties();
     }
 
@@ -52,6 +52,24 @@ public class OptionsMap {
             value = TYPE.classic_nowalls;
         }
         setProperties();
+    }
+
+    public void update(String map) {
+        if (map.equals("classic_walls")) {
+            value = TYPE.classic_walls;
+        } else if (map.equals("classic_nowalls")) {
+            value = TYPE.classic_nowalls;
+        }
+    }
+
+    public String saveMapToPreferences() {
+        if (value == TYPE.classic_walls) {
+            return "classic_walls";
+        } else if (value == TYPE.classic_nowalls) {
+            return "classic_nowalls";
+        } else {
+            return "classic_walls";
+        }
     }
 
 }

@@ -159,7 +159,7 @@ public class PlayScreen implements Screen {
             moveDown();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.BACKSPACE)) { //TODO physical return button
+        if (Gdx.input.isKeyPressed(Input.Keys.BACKSPACE)) {
             game.setScreen(new MenuScreen(game));
             try {
                 dispose();
@@ -171,6 +171,10 @@ public class PlayScreen implements Screen {
             state.setPause();
         } else if (state.isPause() && Gdx.input.justTouched()) {
             state.switchPause();
+        }
+
+        if (gameInterface.returnButton.isClicked()) {
+            game.setScreen(new MenuScreen(game));
         }
 
         if (state.isOver() && Gdx.input.justTouched()) {

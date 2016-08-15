@@ -17,7 +17,7 @@ public class SnakeGame extends Game {
 	public void create () {
 		assets = new Assets();
 		config = new GameConfig();
-		assets.setStyle(config.theme.getStyle());
+		assets.setStyle(config.theme.value);
 		batch = new SpriteBatch();
 		setScreen(new MenuScreen(this));
 

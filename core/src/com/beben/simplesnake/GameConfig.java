@@ -1,5 +1,7 @@
 package com.beben.simplesnake;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.beben.simplesnake.Options.GameTheme;
 import com.beben.simplesnake.Options.OptionsMap;
 
@@ -8,17 +10,38 @@ import com.beben.simplesnake.Options.OptionsMap;
  */
 public class GameConfig {
 
-    //TODO create some map enum, class or whatever
+    private Preferences preferences;
+    private static final String PREFERENCES_VIBRATIONS = "vibrations";
+    private static final String PREFERENCES_theme = "value";
+    private static final String PREFERENCES_map = "map";
 
     public boolean vibrations;
     public GameTheme theme;
     public OptionsMap map;
 
-
     public GameConfig() {
+        preferences = Gdx.app.getPreferences("config");
+        initializeValues();
+        loadPreferences();
+    }
+
+    private void initializeValues() {
         theme = new GameTheme();
         map = new OptionsMap();
         vibrations = false;
+    }
+
+    private void loadPreferences() {
+        theme.update(preferences.getString(PREFERENCES_theme, "default/"));
+        map.update(preferences.getString(PREFERENCES_map, "classic_walls"));
+        vibrations = preferences.getBoolean(PREFERENCES_VIBRATIONS, true);
+    }
+
+    public void savePreferences() {
+        preferences.putString(PREFERENCES_theme, theme.value);
+        preferences.putString(PREFERENCES_map, map.saveMapToPreferences());
+        preferences.putBoolean(PREFERENCES_VIBRATIONS, vibrations);
+        preferences.flush();
     }
 
     public void switchVibrations() {
