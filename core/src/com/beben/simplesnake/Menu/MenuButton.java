@@ -74,7 +74,6 @@ public class MenuButton {
 
     private Skin generateButtonSkinFromFile() {
         texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-
         Skin skin = new Skin();
         skin.add("texture", texture);
         return skin;

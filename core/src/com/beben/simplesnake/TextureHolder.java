@@ -37,6 +37,10 @@ public class TextureHolder {
     public Texture options_mapPreview_CLASSIC_WALLS;
     public Texture options_mapPreview_CLASSIC_NOWALLS;
 
+    public Texture over_BACKGROUND;
+    public Texture over_NEWGAME;
+    public Texture over_RETURN;
+
 
 
 
@@ -74,5 +78,11 @@ public class TextureHolder {
         this.options_button_RETURN = options_button_RETURN;
         this.options_mapPreview_CLASSIC_WALLS = options_mapPreview_CLASSIC_WALLS;
         this.options_mapPreview_CLASSIC_NOWALLS = options_mapPreview_CLASSIC_NOWALLS;
+    }
+
+    public TextureHolder(Texture over_BACKGROUND, Texture over_NEWGAME, Texture over_RETURN) {
+        this.over_BACKGROUND = over_BACKGROUND;
+        this.over_NEWGAME = over_NEWGAME;
+        this.over_RETURN = over_RETURN;
     }
 }

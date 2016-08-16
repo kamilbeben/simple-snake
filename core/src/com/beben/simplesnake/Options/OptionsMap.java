@@ -60,6 +60,7 @@ public class OptionsMap {
         } else if (map.equals("classic_nowalls")) {
             value = TYPE.classic_nowalls;
         }
+        setProperties();
     }
 
     public String saveMapToPreferences() {
