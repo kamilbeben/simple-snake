@@ -49,11 +49,11 @@ public class GameOverScreen implements Screen {
     }
 
     private void addActors() {
-//        buttonNewGame = new MenuButton(stage, new Position(0, SnakeGame.V_HEIGHT),
-//                game.assets.textureHolder.menu_PLAY);
-//
-//        buttonReturn = new MenuButton(stage, new Position(0, 0),
-//                game.assets.textureHolder.menu_OPTIONS);
+        buttonNewGame = new MenuButton(stage, new Position(0, SnakeGame.V_HEIGHT/2),
+                game.assets.textureHolder.over_NEWGAME);
+
+        buttonReturn = new MenuButton(stage, new Position(0, 0),
+                game.assets.textureHolder.over_RETURN);
     }
 
     @Override
@@ -77,6 +77,13 @@ public class GameOverScreen implements Screen {
     }
 
     private void handleUserInput() {
+        if (buttonNewGame.isClicked()) {
+            game.setScreen(new PlayScreen(game));
+            dispose();
+        } else if (buttonReturn.isClicked()) {
+            game.setScreen(new MenuScreen(game));
+            dispose();
+        }
 
     }
 
@@ -103,6 +110,6 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }

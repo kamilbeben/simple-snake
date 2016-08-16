@@ -102,13 +102,13 @@ public class Assets implements Disposable {
         manager.clear();
         manager.load("fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class);
         manager.load(style + "gameover_background.png", Texture.class);
-        manager.load(style + "return_transparent.png", Texture.class);
         manager.load(style + "newgame_transparent.png", Texture.class);
+        manager.load(style + "return_transparent.png", Texture.class);
         waitForLoadingToComplete();
         textureHolder = new TextureHolder(
             manager.get(style + "gameover_background.png", Texture.class),
-            manager.get(style + "return_transparent.png", Texture.class),
-            manager.get(style + "newgame_transparent.png", Texture.class)
+                manager.get(style + "newgame_transparent.png", Texture.class),
+            manager.get(style + "return_transparent.png", Texture.class)
         );
     }
 
