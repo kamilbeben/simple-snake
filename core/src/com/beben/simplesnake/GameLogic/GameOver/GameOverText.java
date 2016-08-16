@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.beben.simplesnake.GameLogic.GameState;
+import com.beben.simplesnake.GameLogic.Timer;
 import com.beben.simplesnake.SnakeGame;
 
 /**
@@ -37,6 +38,7 @@ public class GameOverText {
         if (playerScore > loadBestScore()) {
             highScore = Gdx.app.getPreferences("highscore");
             highScore.putInteger(highScore_KEY, playerScore);
+            highScore.flush();
         }
     }
 

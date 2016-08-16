@@ -29,8 +29,10 @@ public class GameOverScreen implements Screen {
     private MenuButton buttonReturn;
 
     private GameOverText gameOverText;
+    private Float timer;
 
     public GameOverScreen(SnakeGame game, int points) {
+        timer = 0f;
         this.game = game;
         game.assets.loadGameOverAssets();
         gameOverText = new GameOverText(game.assets.manager.get("fonts/font_pixeled_gradient_lightgrey.fnt",
@@ -63,7 +65,10 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        handleUserInput();
+        timer += Gdx.graphics.getDeltaTime();
+        if (secondsPassed(1.5f)) {
+            handleUserInput();
+        }
 
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -74,6 +79,12 @@ public class GameOverScreen implements Screen {
         gameOverText.render(game.batch);
         game.batch.end();
         stage.draw();
+    }
+
+    private boolean secondsPassed(float toPass) {
+        if (timer > toPass) {
+            return true;
+        } else return false;
     }
 
     private void handleUserInput() {
