@@ -6,30 +6,13 @@ package com.beben.simplesnake.GameLogic;
 public class GameState {
 
     public enum STATE {
-        OVER, PAUSED, CONTINUES
+        PAUSED, CONTINUES
     }
 
     private STATE state;
 
     public GameState() {
         state = STATE.CONTINUES;
-    }
-
-    public void setOver(){
-        state = STATE.OVER;
-    }
-
-    public void setPause(){
-        state = STATE.PAUSED;
-    }
-
-    public void setContinue(){
-        state = STATE.CONTINUES;
-    }
-
-    public boolean isOver() {
-        if (state == STATE.OVER) return true;
-        else return false;
     }
 
     public boolean isContinue() {

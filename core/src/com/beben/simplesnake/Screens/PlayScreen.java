@@ -37,7 +37,6 @@ public class PlayScreen implements Screen {
     private Apple apple;
 
     private GameState state = new GameState();
-    private boolean vibrated = false;
 
 
 
@@ -130,14 +129,8 @@ public class PlayScreen implements Screen {
 
 
     private void gameOver() {
-        player.stopMoving();
-        state.setOver();
-        if (game.config.vibrations) {
-            if (!vibrated) {
-                Gdx.input.vibrate(40);
-                vibrated = true;
-            }
-        }
+        game.setScreen(new GameOverScreen(game, player.getPoints()));
+        dispose();
     }
 
 
@@ -168,18 +161,13 @@ public class PlayScreen implements Screen {
         }
 
         if (gameInterface.pauseButton.isClicked() && state.isContinue()) {
-            state.setPause();
+            state.switchPause();
         } else if (state.isPause() && Gdx.input.justTouched()) {
             state.switchPause();
         }
 
         if (gameInterface.returnButton.isClicked()) {
             game.setScreen(new MenuScreen(game));
-        }
-
-        if (state.isOver() && Gdx.input.justTouched()) {
-            game.setScreen(new PlayScreen(game));
-            dispose();
         }
 
     }
