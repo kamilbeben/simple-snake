@@ -1,6 +1,7 @@
 package com.beben.simplesnake.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -35,7 +36,7 @@ public class OptionsScreen implements Screen {
     private MenuButton buttonMapSwitchLeft;
     private MenuButton buttonReturn;
 
-    private OptionsText text; //TODO maybe smaller font?
+    private OptionsText text;
     private static final float itemSpacing = 32;
 
 
@@ -47,6 +48,7 @@ public class OptionsScreen implements Screen {
         text = new OptionsText(game.assets.manager.get(
                 "fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class), mapPreview.getY(),
                 stylePreview.getY(), buttonVibrations.getY());
+        game.enableAndroidBackKey();
     }
 
     private void initializeSprites() {
@@ -160,6 +162,7 @@ public class OptionsScreen implements Screen {
     }
 
     public void handleUserInput() {
+
         if ( buttonVibrations.isClicked() ) {
             switchVibrations();
             game.config.savePreferences();
@@ -182,6 +185,12 @@ public class OptionsScreen implements Screen {
         } else if (buttonReturn.isClicked()) {
             game.setScreen(new MenuScreen(game));
         }
+
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+            game.setScreen(new MenuScreen(game));
+            dispose();
+        }
+
     }
 
     private void switchVibrations() {

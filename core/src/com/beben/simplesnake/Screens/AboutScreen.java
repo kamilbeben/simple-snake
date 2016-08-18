@@ -1,6 +1,7 @@
 package com.beben.simplesnake.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -29,6 +30,7 @@ public class AboutScreen implements Screen { //TODO ABOUT
         stage = new Stage(viewport);
         Gdx.input.setInputProcessor(stage);
         initializeStage();
+        game.enableAndroidBackKey();
     }
 
     private void initializeStage() {
@@ -36,7 +38,12 @@ public class AboutScreen implements Screen { //TODO ABOUT
     }
 
 
-    public void handleUserInput() { //TODO USER INPUT
+    public void handleUserInput() {
+
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+            game.setScreen(new MenuScreen(game));
+            dispose();
+        }
 
     }
 

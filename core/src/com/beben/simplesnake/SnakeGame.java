@@ -1,5 +1,6 @@
 package com.beben.simplesnake;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.beben.simplesnake.Screens.GameOverScreen;
 import com.beben.simplesnake.Screens.MenuScreen;
@@ -21,8 +22,16 @@ public class SnakeGame extends Game {
 		config = new GameConfig();
 		assets.setStyle(config.theme.value);
 		batch = new SpriteBatch();
-		setScreen(new PlayScreen(this));
+		setScreen(new MenuScreen(this));
 
+	}
+
+	public void enableAndroidBackKey() {
+		Gdx.input.setCatchBackKey(true);
+	}
+
+	public void disableAndroidBackKey() {
+		Gdx.input.setCatchBackKey(false);
 	}
 
 	@Override

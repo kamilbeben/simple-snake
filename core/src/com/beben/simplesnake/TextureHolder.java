@@ -12,7 +12,6 @@ public class TextureHolder {
     public Texture DPad_LEFT;
     public Texture DPad_RIGHT;
     public Texture game_button_PAUSE;
-    public Texture game_button_RETURN;
     public Texture snake_HEAD;
     public Texture snake_BODY;
     public Texture snake_END;;
@@ -44,13 +43,12 @@ public class TextureHolder {
 
 
 
-    public TextureHolder(Texture DPad_UP, Texture DPad_DOWN, Texture DPad_LEFT, Texture DPad_RIGHT, Texture game_button_PAUSE, Texture game_button_RETURN, Texture snake_HEAD, Texture snake_BODY, Texture snake_END, Texture snack_TIMEBOMB, Texture snack_APPLE, Texture game_BACKGROUND, Texture game_AREA) {
+    public TextureHolder(Texture DPad_UP, Texture DPad_DOWN, Texture DPad_LEFT, Texture DPad_RIGHT, Texture game_button_PAUSE, Texture snake_HEAD, Texture snake_BODY, Texture snake_END, Texture snack_TIMEBOMB, Texture snack_APPLE, Texture game_BACKGROUND, Texture game_AREA) {
         this.DPad_UP = DPad_UP;
         this.DPad_DOWN = DPad_DOWN;
         this.DPad_LEFT = DPad_LEFT;
         this.DPad_RIGHT = DPad_RIGHT;
         this.game_button_PAUSE = game_button_PAUSE;
-        this.game_button_RETURN = game_button_RETURN;
         this.snake_HEAD = snake_HEAD;
         this.snake_BODY = snake_BODY;
         this.snake_END = snake_END;

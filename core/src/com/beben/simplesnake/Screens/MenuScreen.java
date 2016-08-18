@@ -32,6 +32,7 @@ public class MenuScreen implements Screen {
         game.assets.loadMenuAssets();
         menuBackground = new Sprite(game.assets.textureHolder.menu_BACKGROUND);
         initializeStage();
+        game.disableAndroidBackKey();
     }
 
     private void initializeStage() {

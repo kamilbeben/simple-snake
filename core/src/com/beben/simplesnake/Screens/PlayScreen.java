@@ -1,5 +1,6 @@
 package com.beben.simplesnake.Screens;
 
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -46,6 +47,7 @@ public class PlayScreen implements Screen {
         initializeStage();
         initializeDrawableElements();
         initializeGUI();
+        game.enableAndroidBackKey();
     }
 
     private void initializeStage() {
@@ -152,12 +154,9 @@ public class PlayScreen implements Screen {
             moveDown();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.BACKSPACE)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
             game.setScreen(new MenuScreen(game));
-            try {
-                dispose();
-            } catch (IllegalArgumentException e) {
-            }
+            dispose();
         }
 
         if (gameInterface.pauseButton.isClicked() && state.isContinue()) {
@@ -165,11 +164,6 @@ public class PlayScreen implements Screen {
         } else if (state.isPause() && Gdx.input.justTouched()) {
             state.switchPause();
         }
-
-        if (gameInterface.returnButton.isClicked()) {
-            game.setScreen(new MenuScreen(game));
-        }
-
     }
 
     private void moveRight() {
@@ -199,7 +193,6 @@ public class PlayScreen implements Screen {
             player.setDirection(Player.DIRECTION.DOWN);
         }
     }
-
 
     @Override
     public void resize(int width, int height) {

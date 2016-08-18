@@ -1,6 +1,7 @@
 package com.beben.simplesnake.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -31,14 +32,16 @@ public class GameOverScreen implements Screen {
     private GameOverText gameOverText;
     private Float timer;
 
-    public GameOverScreen(SnakeGame game, int points) {
+    public GameOverScreen(SnakeGame game, int playerScore) {
         timer = 0f;
         this.game = game;
         game.assets.loadGameOverAssets();
         gameOverText = new GameOverText(game.assets.manager.get("fonts/font_pixeled_gradient_lightgrey.fnt",
-                BitmapFont.class), points);
+                BitmapFont.class), playerScore);
         menuBackground = new Sprite(game.assets.textureHolder.over_BACKGROUND);
         initializeStage();
+        vibrateIfEnabled();
+        game.enableAndroidBackKey();
     }
 
     private void initializeStage() {
@@ -66,10 +69,9 @@ public class GameOverScreen implements Screen {
     @Override
     public void render(float delta) {
         timer += Gdx.graphics.getDeltaTime();
-        if (secondsPassed(1.5f)) {
+        if (secondsPassed(1.5f)) { //put in constructor?
             handleUserInput();
         }
-
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.setProjectionMatrix(camera.combined);
@@ -96,6 +98,17 @@ public class GameOverScreen implements Screen {
             dispose();
         }
 
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+            game.setScreen(new MenuScreen(game));
+            dispose();
+        }
+
+    }
+
+    private void vibrateIfEnabled() {
+        if (game.config.vibrations == true) {
+            Gdx.input.vibrate(600);
+        }
     }
 
     @Override

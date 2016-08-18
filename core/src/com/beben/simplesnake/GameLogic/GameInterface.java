@@ -13,15 +13,12 @@ public class GameInterface {
     private Stage stage;
     public DPad dPad;
     public MenuButton pauseButton;
-    public MenuButton returnButton;
 
     public GameInterface(Stage stage, Assets assets) {
         this.stage = stage;
         dPad = new DPad(stage, assets);
         pauseButton = new MenuButton(stage, new Position(SnakeGame.V_WIDTH - 40, 8),
                 assets.textureHolder.game_button_PAUSE);
-        returnButton = new MenuButton(stage, new Position(8, 8),
-                assets.textureHolder.game_button_RETURN);
     }
 
     public void render() {
