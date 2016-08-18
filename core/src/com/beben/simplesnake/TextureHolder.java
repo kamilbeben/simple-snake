@@ -19,6 +19,7 @@ public class TextureHolder {
     public Texture snack_APPLE;
     public Texture game_BACKGROUND;
     public Texture game_AREA;
+    public Texture game_BRICK;
 
     public Texture menu_BACKGROUND;
     public Texture menu_PLAY;
@@ -35,6 +36,8 @@ public class TextureHolder {
     public Texture options_button_RETURN;
     public Texture options_mapPreview_CLASSIC_WALLS;
     public Texture options_mapPreview_CLASSIC_NOWALLS;
+    public Texture options_mapPreview_MIDDLESQUARE_WALLS;
+    public Texture options_mapPreview_MIDDLESQUARE_NOWALLS;
 
     public Texture over_BACKGROUND;
     public Texture over_NEWGAME;
@@ -43,7 +46,7 @@ public class TextureHolder {
 
 
 
-    public TextureHolder(Texture DPad_UP, Texture DPad_DOWN, Texture DPad_LEFT, Texture DPad_RIGHT, Texture game_button_PAUSE, Texture snake_HEAD, Texture snake_BODY, Texture snake_END, Texture snack_TIMEBOMB, Texture snack_APPLE, Texture game_BACKGROUND, Texture game_AREA) {
+    public TextureHolder(Texture DPad_UP, Texture DPad_DOWN, Texture DPad_LEFT, Texture DPad_RIGHT, Texture game_button_PAUSE, Texture snake_HEAD, Texture snake_BODY, Texture snake_END, Texture snack_TIMEBOMB, Texture snack_APPLE, Texture game_BACKGROUND, Texture game_AREA, Texture game_BRICK) {
         this.DPad_UP = DPad_UP;
         this.DPad_DOWN = DPad_DOWN;
         this.DPad_LEFT = DPad_LEFT;
@@ -56,6 +59,7 @@ public class TextureHolder {
         this.snack_APPLE = snack_APPLE;
         this.game_BACKGROUND = game_BACKGROUND;
         this.game_AREA = game_AREA;
+        this.game_BRICK = game_BRICK;
     }
 
     public TextureHolder(Texture menu_BACKGROUND, Texture menu_PLAY, Texture menu_OPTIONS, Texture menu_INFO) {
@@ -65,7 +69,7 @@ public class TextureHolder {
         this.menu_INFO = menu_INFO;
     }
 
-    public TextureHolder(Texture options_BACKGROUND, Texture options_VIBRATION_ON, Texture options_VIBRATION_OFF, Texture options_stylePreview_MODERN, Texture options_stylePreview_DEFAULT, Texture options_switch_RIGHT, Texture options_switch_LEFT, Texture options_button_RETURN, Texture options_mapPreview_CLASSIC_WALLS, Texture options_mapPreview_CLASSIC_NOWALLS) {
+    public TextureHolder(Texture options_BACKGROUND, Texture options_VIBRATION_ON, Texture options_VIBRATION_OFF, Texture options_stylePreview_MODERN, Texture options_stylePreview_DEFAULT, Texture options_switch_RIGHT, Texture options_switch_LEFT, Texture options_button_RETURN, Texture options_mapPreview_CLASSIC_WALLS, Texture options_mapPreview_CLASSIC_NOWALLS, Texture options_mapPreview_MIDDLESQUARE_WALLS, Texture options_mapPreview_MIDDLESQUARE_NOWALLS) {
         this.options_BACKGROUND = options_BACKGROUND;
         this.options_VIBRATION_ON = options_VIBRATION_ON;
         this.options_VIBRATION_OFF = options_VIBRATION_OFF;
@@ -76,6 +80,8 @@ public class TextureHolder {
         this.options_button_RETURN = options_button_RETURN;
         this.options_mapPreview_CLASSIC_WALLS = options_mapPreview_CLASSIC_WALLS;
         this.options_mapPreview_CLASSIC_NOWALLS = options_mapPreview_CLASSIC_NOWALLS;
+        this.options_mapPreview_MIDDLESQUARE_WALLS = options_mapPreview_MIDDLESQUARE_WALLS;
+        this.options_mapPreview_MIDDLESQUARE_NOWALLS = options_mapPreview_MIDDLESQUARE_NOWALLS;
     }
 
     public TextureHolder(Texture over_BACKGROUND, Texture over_NEWGAME, Texture over_RETURN) {

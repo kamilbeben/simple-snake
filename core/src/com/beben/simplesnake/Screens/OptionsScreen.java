@@ -75,6 +75,10 @@ public class OptionsScreen implements Screen {
             mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_CLASSIC_WALLS);
         } else if (game.config.map.isClassicNOWALLS()) {
             mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_CLASSIC_NOWALLS);
+        } else if (game.config.map.isMiddleSquareWALLS()) {
+            mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_MIDDLESQUARE_WALLS);
+        } else if (game.config.map.isMiddleSquareNOWALLS()) {
+            mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_MIDDLESQUARE_NOWALLS);
         }
         mapPreview.setPosition((SnakeGame.V_WIDTH/2) - (stylePreview.getWidth()/2),
                 position_y);

@@ -35,6 +35,8 @@ public class Assets implements Disposable {
         manager.load("menu/return_button.png", Texture.class);
         manager.load("preview_maps/classic_walls.png", Texture.class);
         manager.load("preview_maps/classic_nowalls.png", Texture.class);
+        manager.load("preview_maps/middlesquare_walls.png", Texture.class);
+        manager.load("preview_maps/middlesquare_nowalls.png", Texture.class);
         waitForLoadingToComplete();
         textureHolder = new TextureHolder(
                 manager.get("menu/menu_background.png", Texture.class),
@@ -46,7 +48,9 @@ public class Assets implements Disposable {
                 manager.get("menu/switch_left.png", Texture.class),
                 manager.get("menu/return_button.png", Texture.class),
                 manager.get("preview_maps/classic_walls.png", Texture.class),
-                manager.get("preview_maps/classic_nowalls.png", Texture.class)
+                manager.get("preview_maps/classic_nowalls.png", Texture.class),
+                manager.get("preview_maps/middlesquare_walls.png", Texture.class),
+                manager.get("preview_maps/middlesquare_nowalls.png", Texture.class)
         );
     }
     public void loadMenuAssets() {
@@ -79,6 +83,7 @@ public class Assets implements Disposable {
         manager.load(style + "timebomb.png", Texture.class);
         manager.load(style + "game_background.png", Texture.class);
         manager.load(style + "game_area.png", Texture.class);
+        manager.load(style + "brick.png", Texture.class);
         waitForLoadingToComplete();
         textureHolder = new TextureHolder(
                 manager.get("dpad/up.png", Texture.class),
@@ -92,7 +97,8 @@ public class Assets implements Disposable {
                 manager.get(style + "timebomb.png", Texture.class),
                 manager.get(style + "apple.png", Texture.class),
                 manager.get(style + "game_background.png", Texture.class),
-                manager.get(style + "game_area.png", Texture.class)
+                manager.get(style + "game_area.png", Texture.class),
+                manager.get(style + "brick.png", Texture.class)
         );
     }
 

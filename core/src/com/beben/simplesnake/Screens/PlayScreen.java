@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.beben.simplesnake.GameLogic.Apple;
 import com.beben.simplesnake.GameLogic.GameState;
+import com.beben.simplesnake.GameLogic.Map;
 import com.beben.simplesnake.GameLogic.TimeBomb;
 import com.beben.simplesnake.GameLogic.GameInterface;
 import com.beben.simplesnake.GameLogic.GameText;
@@ -33,6 +34,7 @@ public class PlayScreen implements Screen {
     private GameText gameText;
     private GameInterface gameInterface;
 
+    private Map map;
     private Player player;
     private TimeBomb timeBomb;
     private Apple apple;
@@ -44,6 +46,7 @@ public class PlayScreen implements Screen {
     public PlayScreen(SnakeGame game) {
         this.game = game;
         game.assets.loadGameAssets();
+        map = new Map(game);
         initializeStage();
         initializeDrawableElements();
         initializeGUI();
@@ -86,10 +89,12 @@ public class PlayScreen implements Screen {
         game.batch.begin();
 
         theme.draw(game.batch);
+        map.draw(game.batch);
         player.draw(game.batch);
         timeBomb.drawIfAlive(game.batch);
         apple.draw(game.batch);
         gameText.render(game.batch);
+
         game.batch.end();
         gameInterface.render();
     }

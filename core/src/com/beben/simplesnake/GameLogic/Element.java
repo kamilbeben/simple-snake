@@ -9,14 +9,11 @@ import com.beben.simplesnake.TextureHolder;
  * Created by bezik on 05.08.16.
  */
 public class Element extends Sprite {
-
-    private Texture headTexture;
     private Texture bodyTexture;
     private Texture endTexture;
 
     public Element(TextureHolder textureHolder) {
         super(textureHolder.snake_HEAD);
-        headTexture = textureHolder.snake_HEAD;
         bodyTexture = textureHolder.snake_BODY;
         endTexture = textureHolder.snake_END;
         hide();
@@ -42,9 +39,6 @@ public class Element extends Sprite {
     }
 
     public boolean isCollidingWith (Position position) {
-//        if (getX() > position.x || getX() < position.x ||
-//                getY() > position.y || getY() < position.y) return false;
-//        else return true;
         if (getX() == position.x && getY() == position.y) return true;
         else return false;
     }
@@ -52,9 +46,4 @@ public class Element extends Sprite {
     public Position getPosition() {
         return new Position(getX(), getY());
     }
-
-    public int getTextureWidth() {
-        return bodyTexture.getWidth();
-    }
-
 }
