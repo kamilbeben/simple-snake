@@ -1,6 +1,5 @@
 package com.beben.simplesnake.Screens;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
@@ -106,7 +105,7 @@ public class PlayScreen implements Screen {
             player.update();
         }
         checkForCollisionsWithItself();
-        checkForCollisionsWithWalls();
+        checkForCollisionWithMap();
         checkForCollisionsWithSnacks();
         handleUserInput();
     }
@@ -115,15 +114,20 @@ public class PlayScreen implements Screen {
         if (player.isCollidingWithItself()) gameOver();
     }
 
-    private void checkForCollisionsWithWalls() {
-        if (player.isCollidingWithWalls()) {
-            if (game.config.map.areThereWalls()) {
-                gameOver();
-            } else {
-                player.goThroughWall();
-            }
+    private void checkForCollisionWithMap() {
+        if (map.isCollidingWith(player.getHeadPosition())) {
+            gameOver();
+        }
+
+        if (map.isCollidingWith(apple.position)) {
+            apple.randomizePosition();
+        }
+
+        if (map.isCollidingWith(timeBomb.position)) {
+            timeBomb.randomizePosition();
         }
     }
+
 
     private void checkForCollisionsWithSnacks() {
         if (timeBomb.isAlive() && player.isCollidingWith(timeBomb)) {

@@ -10,20 +10,9 @@ public class OptionsMap {
     }
 
     private TYPE value;
-    private boolean walls;
 
     public OptionsMap() {
         value = TYPE.classic_nowalls;
-        setProperties();
-    }
-
-    private void setProperties() {
-        if (isClassicNOWALLS()) walls = false;
-        else if (isClassicWALLS()) walls = true;
-    }
-
-    public boolean areThereWalls() {
-        return walls;
     }
 
     public boolean isClassicNOWALLS() {
@@ -56,7 +45,6 @@ public class OptionsMap {
         } else if (value == TYPE.middlesquare_nowalls) {
             value = TYPE.classic_walls;
         }
-        setProperties();
     }
 
     public void switchLeft() {
@@ -69,7 +57,6 @@ public class OptionsMap {
         } else if (value == TYPE.classic_walls) {
             value = TYPE.middlesquare_nowalls;
         }
-        setProperties();
     }
 
     public void update(String map) {
@@ -82,7 +69,6 @@ public class OptionsMap {
         } else if (map.equals("middlesquare_nowalls")) {
             value = TYPE.middlesquare_nowalls;
         }
-        setProperties();
     }
 
     public String saveMapToPreferences() {

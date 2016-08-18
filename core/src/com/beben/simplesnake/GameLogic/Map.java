@@ -2,10 +2,7 @@ package com.beben.simplesnake.GameLogic;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.utils.Array;
 import com.beben.simplesnake.SnakeGame;
-
-import java.util.List;
 
 /**
  * Created by bezik on 18.08.16.
@@ -23,20 +20,32 @@ public class Map {
     }
 
     private void checkConfigAndGenerateMap() {
-        if (game.config.map.isClassicWALLS() || game.config.map.isClassicNOWALLS()) {
-            initializeClassic();
-        } else if (game.config.map.isMiddleSquareWALLS() || game.config.map.isMiddleSquareNOWALLS()) {
-            initializeMiddleSquare();
+        if (game.config.map.isClassicWALLS()) {
+            initializeClassicWalls();
+        } else if (game.config.map.isClassicNOWALLS()) {
+            initializeClassicNowalls();
+        } else if (game.config.map.isMiddleSquareWALLS()) {
+            initializeMiddleSquareWalls();
+        } else if (game.config.map.isMiddleSquareNOWALLS()) {
+            initializeMiddleSquareNoWalls();
         }
     }
 
-    private void initializeClassic() {
+    private void initializeClassicWalls() {
 
     }
 
-    private void initializeMiddleSquare() {
+    private void initializeClassicNowalls() {
+
+    }
+
+    private void initializeMiddleSquareWalls() {
         bricks = new Brick[1];
         bricks[0] = new Brick(brick_texture, new Position(66, SnakeGame.V_HEIGHT - 66));
+    }
+
+    private void initializeMiddleSquareNoWalls() {
+
     }
 
     public void draw(Batch batch) {
@@ -49,7 +58,7 @@ public class Map {
         }
     }
 
-    private boolean checkForCollision(Position object) {
+    public boolean isCollidingWith(Position object) {
         try {
             for (int i=0; i<bricks.length; i++) {
                 if (bricks[i].getPosition().equals(object)) {

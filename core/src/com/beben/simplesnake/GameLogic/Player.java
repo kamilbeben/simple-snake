@@ -58,6 +58,9 @@ public class Player {
         timer.update();
         timer.increaseSpeedIfTimeIsRight(points);
         moveIfTimeIsRight();
+        if (isCollidingWithWalls()) {
+            goThroughWall();
+        }
     }
 
     private void moveIfTimeIsRight() {
@@ -211,7 +214,7 @@ public class Player {
         }
     }
 
-    public boolean isCollidingWithWalls( ) {
+    private boolean isCollidingWithWalls( ) {
 
         if (elementList.get(0).getX() < SnakeGame.BORDER) {
             collidingWithWall = true;
@@ -229,6 +232,10 @@ public class Player {
             collidingWithWall = false;
             return false;
         }
+    }
+
+    public Position getHeadPosition() {
+        return elementList.get(0).getPosition();
     }
 
     public int getPoints() {
