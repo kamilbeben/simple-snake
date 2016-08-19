@@ -7,10 +7,14 @@ import com.badlogic.gdx.graphics.Texture;
  */
 public class TextureHolder {
 
-    public Texture DPad_UP;
-    public Texture DPad_DOWN;
-    public Texture DPad_LEFT;
-    public Texture DPad_RIGHT;
+    public Texture DPadUP_UP;
+    public Texture DPadUP_DOWN;
+    public Texture DPadUP_LEFT;
+    public Texture DPadUP_RIGHT;
+    public Texture DPadDOWN_UP;
+    public Texture DPadDOWN_DOWN;
+    public Texture DPadDOWN_LEFT;
+    public Texture DPadDOWN_RIGHT;
     public Texture game_button_PAUSE;
     public Texture snake_HEAD;
     public Texture snake_BODY;
@@ -46,21 +50,6 @@ public class TextureHolder {
 
 
 
-    public TextureHolder(Texture DPad_UP, Texture DPad_DOWN, Texture DPad_LEFT, Texture DPad_RIGHT, Texture game_button_PAUSE, Texture snake_HEAD, Texture snake_BODY, Texture snake_END, Texture snack_TIMEBOMB, Texture snack_APPLE, Texture game_BACKGROUND, Texture game_AREA, Texture game_BRICK) {
-        this.DPad_UP = DPad_UP;
-        this.DPad_DOWN = DPad_DOWN;
-        this.DPad_LEFT = DPad_LEFT;
-        this.DPad_RIGHT = DPad_RIGHT;
-        this.game_button_PAUSE = game_button_PAUSE;
-        this.snake_HEAD = snake_HEAD;
-        this.snake_BODY = snake_BODY;
-        this.snake_END = snake_END;
-        this.snack_TIMEBOMB = snack_TIMEBOMB;
-        this.snack_APPLE = snack_APPLE;
-        this.game_BACKGROUND = game_BACKGROUND;
-        this.game_AREA = game_AREA;
-        this.game_BRICK = game_BRICK;
-    }
 
     public TextureHolder(Texture menu_BACKGROUND, Texture menu_PLAY, Texture menu_OPTIONS, Texture menu_INFO) {
         this.menu_BACKGROUND = menu_BACKGROUND;
@@ -88,5 +77,25 @@ public class TextureHolder {
         this.over_BACKGROUND = over_BACKGROUND;
         this.over_NEWGAME = over_NEWGAME;
         this.over_RETURN = over_RETURN;
+    }
+
+    public TextureHolder(Texture DPadUP_UP, Texture DPadUP_DOWN, Texture DPadUP_LEFT, Texture DPadUP_RIGHT, Texture DPadDOWN_UP, Texture DPadDOWN_DOWN, Texture DPadDOWN_LEFT, Texture DPadDOWN_RIGHT, Texture game_button_PAUSE, Texture snake_HEAD, Texture snake_BODY, Texture snake_END, Texture snack_TIMEBOMB, Texture snack_APPLE, Texture game_BACKGROUND, Texture game_AREA, Texture game_BRICK) {
+        this.DPadUP_UP = DPadUP_UP;
+        this.DPadUP_DOWN = DPadUP_DOWN;
+        this.DPadUP_LEFT = DPadUP_LEFT;
+        this.DPadUP_RIGHT = DPadUP_RIGHT;
+        this.DPadDOWN_UP = DPadDOWN_UP;
+        this.DPadDOWN_DOWN = DPadDOWN_DOWN;
+        this.DPadDOWN_LEFT = DPadDOWN_LEFT;
+        this.DPadDOWN_RIGHT = DPadDOWN_RIGHT;
+        this.game_button_PAUSE = game_button_PAUSE;
+        this.snake_HEAD = snake_HEAD;
+        this.snake_BODY = snake_BODY;
+        this.snake_END = snake_END;
+        this.snack_TIMEBOMB = snack_TIMEBOMB;
+        this.snack_APPLE = snack_APPLE;
+        this.game_BACKGROUND = game_BACKGROUND;
+        this.game_AREA = game_AREA;
+        this.game_BRICK = game_BRICK;
     }
 }

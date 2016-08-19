@@ -13,39 +13,42 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class DPadArrow {
 
     private Button button;
-    private Texture texture;
+    private Texture textureUp;
+    private Texture textureDown;
     public boolean clicked = false;
 
-    public DPadArrow(Stage stage, Position position, Texture texture) {
-        this.texture = texture;
+    public DPadArrow(Stage stage, Position position, Texture textureUp, Texture textureDown) {
+        this.textureUp = textureUp;
+        this.textureDown = textureDown;
         setButtonStyleAndPosition( generateButtonSkinFromTexture(), position);
         setButtonListener();
         stage.addActor(button);
     }
 
     private Skin generateButtonSkinFromTexture() {
-//        texture.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+//        textureUp.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
         Skin skin = new Skin();
-        skin.add("texture", texture);
+        skin.add("textureUp", textureUp);
+        skin.add("textureDown", textureDown);
         return skin;
     }
 
     private void setButtonStyleAndPosition(Skin skin, Position position) {
         Button.ButtonStyle style = new Button.ButtonStyle();
-        style.up = skin.getDrawable("texture");
+        style.up = skin.getDrawable("textureUp");
+        style.down = skin.getDrawable("textureDown");
 
         button = new Button(style);
 
         button.setPosition(position.x, position.y);
-        button.setWidth(texture.getWidth());
-        button.setHeight(texture.getHeight());
+        button.setWidth(textureUp.getWidth());
+        button.setHeight(textureUp.getHeight());
     }
 
     private void setButtonListener() {
         button.addListener(new InputListener() {
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 clicked = true;
-                System.out.println("dPad Arrow");
                 return true;
             }
         });

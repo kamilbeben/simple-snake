@@ -76,6 +76,10 @@ public class Assets implements Disposable {
         manager.load("dpad/left.png", Texture.class);
         manager.load("dpad/right.png", Texture.class);
         manager.load("dpad/down.png", Texture.class);
+        manager.load("dpad/up_down.png", Texture.class);
+        manager.load("dpad/left_down.png", Texture.class);
+        manager.load("dpad/right_down.png", Texture.class);
+        manager.load("dpad/down_down.png", Texture.class);
         manager.load(style + "snake_head_texture.png", Texture.class);
         manager.load(style + "snake_body_texture.png", Texture.class);
         manager.load(style + "snake_end_texture.png", Texture.class);
@@ -90,6 +94,10 @@ public class Assets implements Disposable {
                 manager.get("dpad/down.png", Texture.class),
                 manager.get("dpad/left.png", Texture.class),
                 manager.get("dpad/right.png", Texture.class),
+                manager.get("dpad/up_down.png", Texture.class),
+                manager.get("dpad/left_down.png", Texture.class),
+                manager.get("dpad/right_down.png", Texture.class),
+                manager.get("dpad/down_down.png", Texture.class),
                 manager.get(style + "pause_button.png", Texture.class),
                 manager.get(style + "snake_head_texture.png", Texture.class),
                 manager.get(style + "snake_body_texture.png", Texture.class),
