@@ -39,7 +39,7 @@ public class GameConfig {
 
     public void savePreferences() {
         preferences.putString(PREFERENCES_theme, theme.value);
-        preferences.putString(PREFERENCES_map, map.saveMapToPreferences());
+        preferences.putString(PREFERENCES_map, map.getMapNameString());
         preferences.putBoolean(PREFERENCES_VIBRATIONS, vibrations);
         preferences.flush();
     }

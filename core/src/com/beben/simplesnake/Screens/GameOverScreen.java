@@ -37,7 +37,7 @@ public class GameOverScreen implements Screen {
         this.game = game;
         game.assets.loadGameOverAssets();
         gameOverText = new GameOverText(game.assets.manager.get("fonts/font_pixeled_gradient_lightgrey.fnt",
-                BitmapFont.class), playerScore);
+                BitmapFont.class), playerScore, game.config.map.getMapNameString());
         menuBackground = new Sprite(game.assets.textureHolder.over_BACKGROUND);
         initializeStage();
         vibrateIfEnabled();

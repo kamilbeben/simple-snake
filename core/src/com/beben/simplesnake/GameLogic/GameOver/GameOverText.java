@@ -5,6 +5,7 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.beben.simplesnake.GameConfig;
 import com.beben.simplesnake.SnakeGame;
 
 /**
@@ -14,17 +15,19 @@ public class GameOverText {
 
 
     private BitmapFont font;
-    String yourPoints;
-    String bestScoreString;
+    private String yourPoints;
+    private String bestScoreString;
+    private SnakeGame game;
 
-    private static final String highScore_KEY = "highScoreKEY";
+    private String highScore_KEY;
     private Preferences highScore;
 
-    public GameOverText(BitmapFont bitmapFont, int playerScore) {
+    public GameOverText(BitmapFont bitmapFont, int playerScore, String highScore_KEY) {
         font = bitmapFont;
+        this.highScore_KEY = highScore_KEY;
         yourPoints = "Your score: " + Integer.toString(playerScore);
         bestScoreString = "Best score: " + loadBestScore();
-        compareWithBestScore(playerScore);
+        compareWithBestScoreFromEachMap(playerScore);
     }
 
     private int loadBestScore() {
@@ -32,9 +35,10 @@ public class GameOverText {
         return highScore.getInteger(highScore_KEY, 0);
     }
 
-    private void compareWithBestScore(int playerScore) {
+    private void compareWithBestScoreFromEachMap(int playerScore) {
         if (playerScore > loadBestScore()) {
             highScore = Gdx.app.getPreferences("highscore");
+
             highScore.putInteger(highScore_KEY, playerScore);
             highScore.flush();
         }

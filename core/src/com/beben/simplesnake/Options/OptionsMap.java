@@ -71,7 +71,7 @@ public class OptionsMap {
         }
     }
 
-    public String saveMapToPreferences() {
+    public String getMapNameString() {
         if (value == TYPE.classic_walls) {
             return "classic_walls";
         } else if (value == TYPE.classic_nowalls) {
