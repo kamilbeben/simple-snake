@@ -31,7 +31,7 @@ public class GameConfig {
         vibrations = false;
     }
 
-    private void loadPreferences() {
+    public void loadPreferences() {
         theme.update(preferences.getString(PREFERENCES_theme, "default/"));
         map.update(preferences.getString(PREFERENCES_map, "classic_nowalls"));
         vibrations = preferences.getBoolean(PREFERENCES_VIBRATIONS, true);

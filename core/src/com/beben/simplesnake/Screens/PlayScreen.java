@@ -44,7 +44,7 @@ public class PlayScreen implements Screen {
 
     public PlayScreen(SnakeGame game) {
         this.game = game;
-        game.assets.loadGameAssets();
+        initializeAssets();
         map = new Map(game);
         initializeStage();
         initializeDrawableElements();
@@ -52,6 +52,10 @@ public class PlayScreen implements Screen {
         game.enableAndroidBackKey();
     }
 
+    private void initializeAssets() {
+        game.assets.setStyle(game.config.theme.value);
+        game.assets.loadGameAssets();
+    }
     private void initializeStage() {
         camera = new OrthographicCamera(game.V_WIDTH, game.V_HEIGHT);
         camera.translate(camera.viewportWidth/2, camera.viewportHeight/2);

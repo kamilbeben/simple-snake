@@ -185,14 +185,10 @@ public class Player {
         return false;
     }
 
-    public void stopMoving() {
-        keepMoving = false;
-    }
-
     public void goThroughWall() {
 
         if (direction == DIRECTION.LEFT) {
-            elementList.get(0).setX(SnakeGame.V_WIDTH - SnakeGame.BORDER);
+            elementList.get(0).setX(SnakeGame.V_WIDTH - 3*SnakeGame.BORDER);
         }
 
         if (direction == DIRECTION.RIGHT) {
@@ -204,7 +200,7 @@ public class Player {
         }
 
         if (direction == DIRECTION.DOWN) {
-            elementList.get(0).setY(SnakeGame.V_HEIGHT - SnakeGame.BORDER);
+            elementList.get(0).setY(SnakeGame.V_HEIGHT - 3*SnakeGame.BORDER);
         }
     }
 
@@ -216,16 +212,16 @@ public class Player {
 
     private boolean isCollidingWithWalls( ) {
 
-        if (elementList.get(0).getX() < SnakeGame.BORDER) {
+        if (elementList.get(0).getX() == -SnakeGame.BORDER) {
             collidingWithWall = true;
             return true;
-        } else if (elementList.get(0).getX() > SnakeGame.V_WIDTH - 2 * SnakeGame.BORDER) {
+        } else if (elementList.get(0).getX() == (SnakeGame.V_WIDTH - SnakeGame.BORDER)) {
             collidingWithWall = true;
             return true;
-        } else if (elementList.get(0).getY() > SnakeGame.V_HEIGHT - 2 * SnakeGame.BORDER) {
+        } else if (elementList.get(0).getY() == (SnakeGame.V_HEIGHT - SnakeGame.BORDER)) {
             collidingWithWall = true;
             return true;
-        } else if (elementList.get(0).getY() < SnakeGame.V_HEIGHT - SnakeGame.BORDER - SnakeGame.ARENA_WIDTH) {
+        } else if (elementList.get(0).getY() == (SnakeGame.V_HEIGHT - 3*SnakeGame.BORDER - SnakeGame.ARENA_WIDTH)) {
             collidingWithWall = true;
             return true;
         }  else {
