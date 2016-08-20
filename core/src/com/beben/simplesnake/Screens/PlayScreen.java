@@ -89,9 +89,14 @@ public class PlayScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.setProjectionMatrix(camera.combined);
-        game.batch.begin();
 
+        game.batch.begin();
         theme.draw(game.batch);
+        game.batch.end();
+
+        gameInterface.render();
+
+        game.batch.begin();
         map.draw(game.batch);
         player.draw(game.batch);
         timeBomb.drawIfAlive(game.batch);
@@ -99,7 +104,6 @@ public class PlayScreen implements Screen {
         gameText.render(game.batch);
 
         game.batch.end();
-        gameInterface.render();
     }
 
     private void update() {

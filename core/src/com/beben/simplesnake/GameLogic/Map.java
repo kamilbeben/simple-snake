@@ -28,6 +28,8 @@ public class Map {
             initializeMiddleSquareWalls();
         } else if (game.config.map.isMiddleSquareNOWALLS()) {
             initializeMiddleSquareNoWalls();
+        } else if (game.config.map.isDickNowalls()) {
+            initializeDickNowalls();
         }
     }
 
@@ -239,6 +241,60 @@ public class Map {
         bricks[22] = new Brick(brick_texture, new Position(162, 286));
         bricks[23] = new Brick(brick_texture, new Position(162, 298));
         bricks[24] = new Brick(brick_texture, new Position(162, 310));
+    }
+
+    private void initializeDickNowalls() {
+        bricks = new Brick[50];
+        bricks[0] = new Brick(brick_texture, new Position(18, 178));
+        bricks[1] = new Brick(brick_texture, new Position(18, 190));
+        bricks[2] = new Brick(brick_texture, new Position(18, 202));
+        bricks[3] = new Brick(brick_texture, new Position(30, 166));
+        bricks[4] = new Brick(brick_texture, new Position(30, 214));
+        bricks[5] = new Brick(brick_texture, new Position(30, 226));
+        bricks[6] = new Brick(brick_texture, new Position(42, 238));
+        bricks[7] = new Brick(brick_texture, new Position(54, 238));
+        bricks[8] = new Brick(brick_texture, new Position(66, 238));
+        bricks[9] = new Brick(brick_texture, new Position(78, 226));
+        bricks[10] = new Brick(brick_texture, new Position(78, 238));
+        bricks[11] = new Brick(brick_texture, new Position(78, 250));
+        bricks[12] = new Brick(brick_texture, new Position(78, 262));
+        bricks[13] = new Brick(brick_texture, new Position(78, 274));
+        bricks[14] = new Brick(brick_texture, new Position(78, 286));
+        bricks[15] = new Brick(brick_texture, new Position(78, 298));
+        bricks[16] = new Brick(brick_texture, new Position(78, 310));
+        bricks[17] = new Brick(brick_texture, new Position(78, 322));
+        bricks[18] = new Brick(brick_texture, new Position(78, 334));
+        bricks[19] = new Brick(brick_texture, new Position(78, 346));
+        bricks[20] = new Brick(brick_texture, new Position(78, 358));
+        bricks[21] = new Brick(brick_texture, new Position(90, 322));
+        bricks[22] = new Brick(brick_texture, new Position(90, 370));
+        bricks[23] = new Brick(brick_texture, new Position(102, 382));
+        bricks[24] = new Brick(brick_texture, new Position(114, 382));
+        bricks[25] = new Brick(brick_texture, new Position(126, 382));
+        bricks[26] = new Brick(brick_texture, new Position(138, 322));
+        bricks[27] = new Brick(brick_texture, new Position(138, 382));
+        bricks[28] = new Brick(brick_texture, new Position(150, 226));
+        bricks[29] = new Brick(brick_texture, new Position(150, 238));
+        bricks[30] = new Brick(brick_texture, new Position(150, 250));
+        bricks[31] = new Brick(brick_texture, new Position(150, 262));
+        bricks[32] = new Brick(brick_texture, new Position(150, 274));
+        bricks[33] = new Brick(brick_texture, new Position(150, 286));
+        bricks[34] = new Brick(brick_texture, new Position(150, 298));
+        bricks[35] = new Brick(brick_texture, new Position(150, 310));
+        bricks[36] = new Brick(brick_texture, new Position(150, 322));
+        bricks[37] = new Brick(brick_texture, new Position(150, 370));
+        bricks[38] = new Brick(brick_texture, new Position(162, 238));
+        bricks[39] = new Brick(brick_texture, new Position(162, 334));
+        bricks[40] = new Brick(brick_texture, new Position(162, 346));
+        bricks[41] = new Brick(brick_texture, new Position(162, 358));
+        bricks[42] = new Brick(brick_texture, new Position(174, 238));
+        bricks[43] = new Brick(brick_texture, new Position(186, 238));
+        bricks[44] = new Brick(brick_texture, new Position(198, 166));
+        bricks[45] = new Brick(brick_texture, new Position(198, 214));
+        bricks[46] = new Brick(brick_texture, new Position(198, 226));
+        bricks[47] = new Brick(brick_texture, new Position(210, 178));
+        bricks[48] = new Brick(brick_texture, new Position(210, 190));
+        bricks[49] = new Brick(brick_texture, new Position(210, 202));
     }
 
     public void draw(Batch batch) {

@@ -79,6 +79,8 @@ public class OptionsScreen implements Screen {
             mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_MIDDLESQUARE_WALLS);
         } else if (game.config.map.isMiddleSquareNOWALLS()) {
             mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_MIDDLESQUARE_NOWALLS);
+        } else if (game.config.map.isDickNowalls()) {
+            mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_DICK_NOWALLS);
         }
         mapPreview.setPosition((SnakeGame.V_WIDTH/2) - (stylePreview.getWidth()/2),
                 position_y);
