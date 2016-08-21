@@ -65,7 +65,7 @@ public class PlayScreen implements Screen {
     }
 
     private void initializeDrawableElements() {
-        player = new Player(game.assets.textureHolder);
+        player = new Player(game.assets.textureHolder, game.config.hardMode);
         apple = new Apple(game.assets.textureHolder.snack_APPLE);
         timeBomb = new TimeBomb(game.assets.textureHolder.snack_TIMEBOMB);
     }
@@ -74,7 +74,7 @@ public class PlayScreen implements Screen {
         gameInterface = new GameInterface(stage, game.assets);
         theme = new GameTheme(game.assets.textureHolder);
         gameText = new GameText(game.assets.manager.get(
-                "fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class));
+                "fonts/font.fnt", BitmapFont.class));
     }
 
 

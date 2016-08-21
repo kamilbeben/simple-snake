@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.beben.simplesnake.SnakeGame;
 
 /**
@@ -40,20 +39,20 @@ public class GameText {
 
     public void render(Batch batch) {
         font.draw(batch, points, 10, 156);
-        font.draw(batch, timer, calculatePositionX(timer.toString()), 156);
+        font.draw(batch, timer, alignRight(timer.toString()), 156);
         if (pause) {
-            font.draw(batch, "Pause", center("Pause"),
+            font.draw(batch, "Pause", centerPositionX("Pause"),
                 SnakeGame.V_HEIGHT - 106);
         }
     }
 
-    private int calculatePositionX(String string) {
+    private int alignRight(String string) {
         GlyphLayout glyphLayout = new GlyphLayout();
         glyphLayout.setText(font, string);
         return SnakeGame.V_WIDTH - ((int) glyphLayout.width + 8);
     }
 
-    private int center(String string) {
+    private int centerPositionX(String string) {
         GlyphLayout glyphLayout = new GlyphLayout();
         glyphLayout.setText(font, string);
         return SnakeGame.V_WIDTH/2 - (int) glyphLayout.width/2;

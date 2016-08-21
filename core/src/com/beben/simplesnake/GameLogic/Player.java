@@ -1,6 +1,5 @@
 package com.beben.simplesnake.GameLogic;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.beben.simplesnake.*;
 import java.util.ArrayList;
@@ -29,9 +28,9 @@ public class Player {
 
 
 
-    public Player(TextureHolder textureHolder) {
+    public Player(TextureHolder textureHolder, boolean isHardModeEnabled) {
         this.textureHolder = textureHolder;
-        timer = new Timer();
+        timer = new Timer(isHardModeEnabled);
         points = 0;
         direction = DIRECTION.UP;
         initializeSnakeElements();
@@ -55,8 +54,7 @@ public class Player {
     }
 
     public void update() {
-        timer.update();
-        timer.increaseSpeedIfTimeIsRight(points);
+        timer.update(points);
         moveIfTimeIsRight();
         if (isCollidingWithWalls()) {
             goThroughWall();

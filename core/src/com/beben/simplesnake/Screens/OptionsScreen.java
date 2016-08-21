@@ -29,6 +29,7 @@ public class OptionsScreen implements Screen {
     private Sprite stylePreview;
     private Sprite mapPreview;
 
+    private MenuButton buttonDifficulty;
     private MenuButton buttonVibrations;
     private MenuButton buttonStyleSwitchRight;
     private MenuButton buttonStyleSwitchLeft;
@@ -37,7 +38,7 @@ public class OptionsScreen implements Screen {
     private MenuButton buttonReturn;
 
     private OptionsText text;
-    private static final float itemSpacing = 32;
+    private static final float itemSpacing = 28;
 
 
     public OptionsScreen(SnakeGame game) {
@@ -46,8 +47,8 @@ public class OptionsScreen implements Screen {
         initializeSprites();
         initializeStage();
         text = new OptionsText(game.assets.manager.get(
-                "fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class), mapPreview.getY(),
-                stylePreview.getY(), buttonVibrations.getY());
+                "fonts/font.fnt", BitmapFont.class), mapPreview.getY(),
+                stylePreview.getY(), buttonVibrations.getY(), buttonDifficulty.getY());
         game.enableAndroidBackKey();
     }
 
@@ -79,8 +80,6 @@ public class OptionsScreen implements Screen {
             mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_MIDDLESQUARE_WALLS);
         } else if (game.config.map.isMiddleSquareNOWALLS()) {
             mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_MIDDLESQUARE_NOWALLS);
-        } else if (game.config.map.isDickNowalls()) {
-            mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_DICK_NOWALLS);
         }
         mapPreview.setPosition((SnakeGame.V_WIDTH/2) - (stylePreview.getWidth()/2),
                 position_y);
@@ -96,13 +95,14 @@ public class OptionsScreen implements Screen {
     }
 
     private void addActors() {
+        initializeDifficultyButton();
         initializeVibrationButton();
         initializeSwitchStyleButtons();
         initializeReturnButton();
     }
 
     private void initializeVibrationButton() {
-        float position_y = mapPreview.getY() -
+        float position_y = buttonDifficulty.getY() -
                 game.assets.textureHolder.options_VIBRATION_ON.getHeight() - itemSpacing;
         if (game.config.vibrations) {
             buttonVibrations = new MenuButton(stage, position_y,
@@ -110,6 +110,19 @@ public class OptionsScreen implements Screen {
         } else {
             buttonVibrations = new MenuButton(stage, position_y,
                     game.assets.textureHolder.options_VIBRATION_OFF);
+        }
+    }
+
+
+    private void initializeDifficultyButton() {
+        float position_y = mapPreview.getY() -
+                game.assets.textureHolder.options_hardMode.getHeight() - itemSpacing;
+        if (game.config.hardMode) {
+            buttonDifficulty = new MenuButton(stage, position_y,
+                    game.assets.textureHolder.options_hardMode);
+        } else {
+            buttonDifficulty = new MenuButton(stage, position_y,
+                    game.assets.textureHolder.options_easyMode);
         }
     }
 
@@ -172,7 +185,10 @@ public class OptionsScreen implements Screen {
         if ( buttonVibrations.isClicked() ) {
             switchVibrations();
             game.config.savePreferences();
-        } else if ( buttonMapSwitchLeft.isClicked() ) {
+        } else if ( buttonDifficulty.isClicked() ) {
+            switchDifficulty();
+            game.config.savePreferences();
+        }else if ( buttonMapSwitchLeft.isClicked() ) {
             game.config.map.switchLeft();
             initializeMapPreview();
             game.config.savePreferences();
@@ -190,6 +206,7 @@ public class OptionsScreen implements Screen {
             game.config.savePreferences();
         } else if (buttonReturn.isClicked()) {
             game.setScreen(new MenuScreen(game));
+            dispose();
         }
 
         if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
@@ -206,7 +223,15 @@ public class OptionsScreen implements Screen {
             buttonVibrations.setTexture(stage, game.assets.textureHolder.options_VIBRATION_ON);
         }
         game.config.switchVibrations();
-        System.out.println(game.config.vibrations);
+    }
+
+    private void switchDifficulty() {
+        if ( game.config.hardMode) {
+            buttonDifficulty.setTexture(stage, game.assets.textureHolder.options_easyMode);
+        } else {
+            buttonDifficulty.setTexture(stage, game.assets.textureHolder.options_hardMode);
+        }
+        game.config.switchDifficulty();
     }
 
     @Override

@@ -13,32 +13,56 @@ public class Timer {
     public float frozenMoveInterwal;
     public float lastDirectionChange;
     public float nitro;
-    public boolean nitroBool = false;
+    public boolean nitroBoolean = false;
+    public boolean isHardModeEnabled;
 
-    public Timer() {
+    public Timer(boolean isHardModeEnabled) {
         time = 0;
         lastMove = 0;
-        moveInterval = 0.1f;
         lastDirectionChange = 0;
         nitro = 0;
+        this.isHardModeEnabled = isHardModeEnabled;
     }
 
-    public void update() {
+    public void update(int points) {
         time += Gdx.graphics.getDeltaTime();
+        updatePlayerSpeed(points);
     }
     
-    public void increaseSpeedIfTimeIsRight(int points) {
-        if (!nitroBool) {
-            if (points < 50) moveInterval = 0.1f;
-            else if (points < 150) moveInterval = 0.090f;
-            else if (points < 250) moveInterval = 0.080f;
-            else if (points < 350) moveInterval = 0.075f;
-            else if (points < 450) moveInterval = 0.070f;
-            else if (points < 550) moveInterval = 0.065f;
-            else if (points < 650) moveInterval = 0.060f;
-            else if (points < 750) moveInterval = 0.055f;
-            else if (points < 850) moveInterval = 0.050f;
+    private void updatePlayerSpeed(int points) {
+        if (!nitroBoolean) {
+            if (isHardModeEnabled) {
+                updateSpeedHardMode(points);
+            } else {
+                updateSpeedEasyMode(points);
+            }
         } else handleNitro(points);
+    }
+
+    private void updateSpeedEasyMode(int points) {
+        if (points < 20) moveInterval = 0.15f;
+        else if (points < 50) moveInterval = 0.135f;
+        else if (points < 80) moveInterval = 0.115f;
+        else if (points < 110) moveInterval = 0.1f;
+        else if (points < 150) moveInterval = 0.09f;
+        else if (points < 200) moveInterval = 0.08f;
+        else if (points < 350) moveInterval = 0.07f;
+        else if (points < 400) moveInterval = 0.065f;
+        else if (points < 500) moveInterval = 0.06f;
+        else if (points < 700) moveInterval = 0.055f;
+    }
+
+
+    private void updateSpeedHardMode(int points) {
+        if (points < 50) moveInterval = 0.1f;
+        else if (points < 150) moveInterval = 0.090f;
+        else if (points < 250) moveInterval = 0.080f;
+        else if (points < 350) moveInterval = 0.075f;
+        else if (points < 450) moveInterval = 0.070f;
+        else if (points < 550) moveInterval = 0.065f;
+        else if (points < 650) moveInterval = 0.060f;
+        else if (points < 750) moveInterval = 0.055f;
+        else if (points < 850) moveInterval = 0.050f;
     }
 
     private void handleNitro(int points) {
@@ -46,14 +70,14 @@ public class Timer {
             nitro += Gdx.graphics.getDeltaTime();
             moveInterval = frozenMoveInterwal - 0.03f;
             if (nitro > 0.6f) {
-                nitroBool = false;
+                nitroBoolean = false;
             }
         }
     }
 
     public void startNitro() {
         nitro = 0;
-        nitroBool = true;
+        nitroBoolean = true;
         frozenMoveInterwal = moveInterval;
     }
 

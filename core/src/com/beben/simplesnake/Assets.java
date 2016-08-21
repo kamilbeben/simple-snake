@@ -24,10 +24,12 @@ public class Assets implements Disposable {
 
     public void loadOptionsAssets() {
         manager.clear();
-        manager.load("fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class);
+        manager.load("fonts/font.fnt", BitmapFont.class);
         manager.load("menu/menu_background.png", Texture.class);
         manager.load("menu/options_vibrations_ON.png", Texture.class);
         manager.load("menu/options_vibrations_OFF.png", Texture.class);
+        manager.load("menu/options_easyMode.png", Texture.class);
+        manager.load("menu/options_hardMode.png", Texture.class);
         manager.load("menu/style_preview_modern.png", Texture.class);
         manager.load("menu/style_preview_retro.png", Texture.class);
         manager.load("menu/switch_right.png", Texture.class);
@@ -37,12 +39,13 @@ public class Assets implements Disposable {
         manager.load("preview_maps/classic_nowalls.png", Texture.class);
         manager.load("preview_maps/middlesquare_walls.png", Texture.class);
         manager.load("preview_maps/middlesquare_nowalls.png", Texture.class);
-        manager.load("preview_maps/dick_nowalls.png", Texture.class);
         waitForLoadingToComplete();
         textureHolder = new TextureHolder(
                 manager.get("menu/menu_background.png", Texture.class),
                 manager.get("menu/options_vibrations_ON.png", Texture.class),
                 manager.get("menu/options_vibrations_OFF.png", Texture.class),
+                manager.get("menu/options_easyMode.png", Texture.class),
+                manager.get("menu/options_hardMode.png", Texture.class),
                 manager.get("menu/style_preview_modern.png", Texture.class),
                 manager.get("menu/style_preview_retro.png", Texture.class),
                 manager.get("menu/switch_right.png", Texture.class),
@@ -51,8 +54,7 @@ public class Assets implements Disposable {
                 manager.get("preview_maps/classic_walls.png", Texture.class),
                 manager.get("preview_maps/classic_nowalls.png", Texture.class),
                 manager.get("preview_maps/middlesquare_walls.png", Texture.class),
-                manager.get("preview_maps/middlesquare_nowalls.png", Texture.class),
-                manager.get("preview_maps/dick_nowalls.png", Texture.class)
+                manager.get("preview_maps/middlesquare_nowalls.png", Texture.class)
         );
     }
     public void loadMenuAssets() {
@@ -72,7 +74,7 @@ public class Assets implements Disposable {
 
     public void loadGameAssets() {
         manager.clear();
-        manager.load("fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class);
+        manager.load("fonts/font.fnt", BitmapFont.class);
         manager.load(style + "pause_button.png", Texture.class);
         manager.load("dpad/up.png", Texture.class);
         manager.load("dpad/left.png", Texture.class);
@@ -114,15 +116,27 @@ public class Assets implements Disposable {
 
     public void loadGameOverAssets() {
         manager.clear();
-        manager.load("fonts/font_pixeled_gradient_lightgrey.fnt", BitmapFont.class);
+        manager.load("fonts/font.fnt", BitmapFont.class);
         manager.load(style + "gameover_background.png", Texture.class);
         manager.load(style + "newgame_transparent.png", Texture.class);
         manager.load(style + "return_transparent.png", Texture.class);
         waitForLoadingToComplete();
         textureHolder = new TextureHolder(
-            manager.get(style + "gameover_background.png", Texture.class),
+                manager.get(style + "gameover_background.png", Texture.class),
                 manager.get(style + "newgame_transparent.png", Texture.class),
-            manager.get(style + "return_transparent.png", Texture.class)
+                manager.get(style + "return_transparent.png", Texture.class)
+        );
+    }
+
+    public void loadAboutAssets() {
+        manager.clear();
+        manager.load("fonts/font.fnt", BitmapFont.class);
+        manager.load("menu/menu_background.png", Texture.class);
+        manager.load("menu/return_button.png", Texture.class);
+        waitForLoadingToComplete();
+        textureHolder = new TextureHolder(
+                manager.get("menu/menu_background.png", Texture.class),
+                manager.get("menu/return_button.png", Texture.class)
         );
     }
 

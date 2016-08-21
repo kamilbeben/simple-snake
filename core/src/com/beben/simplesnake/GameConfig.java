@@ -11,11 +11,13 @@ import com.beben.simplesnake.Options.OptionsMap;
 public class GameConfig {
 
     private Preferences preferences;
-    private static final String PREFERENCES_VIBRATIONS = "vibrations";
+    private static final String PREFERENCES_vibrations = "vibrations";
+    private static final String PREFERENCES_hardMode = "hardMode";
     private static final String PREFERENCES_theme = "value";
     private static final String PREFERENCES_map = "map";
 
     public boolean vibrations;
+    public boolean hardMode;
     public GameTheme theme;
     public OptionsMap map;
 
@@ -28,24 +30,30 @@ public class GameConfig {
     private void initializeValues() {
         theme = new GameTheme();
         map = new OptionsMap();
-        vibrations = false;
     }
 
     public void loadPreferences() {
         theme.update(preferences.getString(PREFERENCES_theme, "default/"));
         map.update(preferences.getString(PREFERENCES_map, "classic_nowalls"));
-        vibrations = preferences.getBoolean(PREFERENCES_VIBRATIONS, true);
+        vibrations = preferences.getBoolean(PREFERENCES_vibrations, true);
+        hardMode = preferences.getBoolean(PREFERENCES_hardMode, false);
     }
 
     public void savePreferences() {
         preferences.putString(PREFERENCES_theme, theme.value);
         preferences.putString(PREFERENCES_map, map.getMapNameString());
-        preferences.putBoolean(PREFERENCES_VIBRATIONS, vibrations);
+        preferences.putBoolean(PREFERENCES_vibrations, vibrations);
+        preferences.putBoolean(PREFERENCES_hardMode, hardMode);
         preferences.flush();
     }
 
     public void switchVibrations() {
         if (vibrations) vibrations = false;
         else vibrations = true;
+    }
+
+    public void switchDifficulty() {
+        if (hardMode) hardMode = false;
+        else hardMode = true;
     }
 }
