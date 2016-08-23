@@ -40,16 +40,15 @@ public class Timer {
     }
 
     private void updateSpeedEasyMode(int points) {
-        if (points < 20) moveInterval = 0.15f;
-        else if (points < 50) moveInterval = 0.135f;
-        else if (points < 80) moveInterval = 0.115f;
-        else if (points < 110) moveInterval = 0.1f;
-        else if (points < 150) moveInterval = 0.09f;
-        else if (points < 200) moveInterval = 0.08f;
-        else if (points < 350) moveInterval = 0.07f;
-        else if (points < 400) moveInterval = 0.065f;
-        else if (points < 500) moveInterval = 0.06f;
-        else if (points < 700) moveInterval = 0.055f;
+        if (points < 50) moveInterval = 0.135f;
+        else if (points < 100) moveInterval = 0.115f;
+        else if (points < 150) moveInterval = 0.1f;
+        else if (points < 250) moveInterval = 0.09f;
+        else if (points < 350) moveInterval = 0.08f;
+        else if (points < 450) moveInterval = 0.07f;
+        else if (points < 550) moveInterval = 0.065f;
+        else if (points < 650) moveInterval = 0.06f;
+        else if (points < 750) moveInterval = 0.055f;
     }
 
 

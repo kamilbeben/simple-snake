@@ -14,27 +14,27 @@ public class Player {
     public enum DIRECTION {
         LEFT, RIGHT, UP, DOWN;
     }
-
-
     public DIRECTION direction;
-    private int points;
     private static final int moveDistance = 12;
+
+    private int playerScore;
+
     private List <Element> elementList;
     private List <Position> elementPastPosition;
-    private boolean keepMoving;
     public boolean collidingWithWall;
     private Timer timer;
     private TextureHolder textureHolder;
+    private boolean hardMode;
 
 
 
     public Player(TextureHolder textureHolder, boolean isHardModeEnabled) {
         this.textureHolder = textureHolder;
         timer = new Timer(isHardModeEnabled);
-        points = 0;
+        hardMode = isHardModeEnabled;
+        playerScore = 0;
         direction = DIRECTION.UP;
         initializeSnakeElements();
-        keepMoving = true;
     }
 
     private void initializeSnakeElements() {
@@ -54,7 +54,7 @@ public class Player {
     }
 
     public void update() {
-        timer.update(points);
+        timer.update(playerScore);
         moveIfTimeIsRight();
         if (isCollidingWithWalls()) {
             goThroughWall();
@@ -62,7 +62,7 @@ public class Player {
     }
 
     private void moveIfTimeIsRight() {
-        if (keepMoving && timer.isItTimeToMove()) move();
+        if (timer.isItTimeToMove()) move();
     }
 
     private void move() {
@@ -101,7 +101,7 @@ public class Player {
                 elementPastPosition.get(i).rotation = elementList.get(i).getRotation();
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index out of bounds in Player.autoElementPastPositions()");
+            e.printStackTrace();
         }
     }
 
@@ -114,7 +114,7 @@ public class Player {
                 changeTextureIfLast(i);
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index out of bounds in Player.autoSetPresentPositions()");
+            e.printStackTrace();
         }
     }
 
@@ -131,13 +131,21 @@ public class Player {
 
     public void eatTimeBomb() {
         addNewBodyElement();
-        points += 50;
-        timer.startNitro();
+        if (hardMode) {
+            timer.startNitro();
+            playerScore += 50;
+        } else {
+            playerScore += 30;
+        }
     }
 
     public void eatApple() {
         addNewBodyElement();
-        points += 10;
+        if (hardMode) {
+            playerScore += 10;
+        } else {
+            playerScore += 7;
+        }
     }
 
     public boolean isCollidingWith(TimeBomb timeBomb) {
@@ -150,7 +158,7 @@ public class Player {
                 }
             }
         } catch (ConcurrentModificationException e) {
-            System.out.println("ConcurrentModificationException in Player.checkIfCollidingWithAndEat(TimeBomb)");
+            e.printStackTrace();
         }
         return false;
     }
@@ -165,7 +173,7 @@ public class Player {
                 }
             }
         } catch (ConcurrentModificationException e) {
-            System.out.println("ConcurrentModificationException in Player.checkIfCollidingWithAndEat(Apple)");
+            e.printStackTrace();
         }
         return false;
     }
@@ -178,7 +186,7 @@ public class Player {
                 }
             }
         } catch (ConcurrentModificationException e) {
-            System.out.println("ConcurrentModificationException in Player.isCollidingWithItself()");
+            e.printStackTrace();
         }
         return false;
     }
@@ -232,7 +240,7 @@ public class Player {
         return elementList.get(0).getPosition();
     }
 
-    public int getPoints() {
-        return points;
+    public int getPlayerScore() {
+        return playerScore;
     }
 }

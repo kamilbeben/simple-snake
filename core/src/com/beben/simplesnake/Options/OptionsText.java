@@ -44,4 +44,7 @@ public class OptionsText {
         return SnakeGame.V_WIDTH/2 - ((int) glyphLayout.width )/2;
     }
 
+    public void dispose() {
+        font.dispose();
+    }
 }

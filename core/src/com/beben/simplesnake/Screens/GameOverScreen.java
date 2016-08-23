@@ -29,14 +29,14 @@ public class GameOverScreen implements Screen {
     private MenuButton buttonNewGame;
     private MenuButton buttonReturn;
 
-    private GameOverText gameOverText;
+    private GameOverText text;
     private Float timer;
 
     public GameOverScreen(SnakeGame game, int playerScore) {
         timer = 0f;
         this.game = game;
         game.assets.loadGameOverAssets();
-        gameOverText = new GameOverText(game.assets.manager.get("fonts/font.fnt",
+        text = new GameOverText(game.assets.manager.get("fonts/font.fnt",
                 BitmapFont.class), playerScore, game.config.map.getMapNameString());
         menuBackground = new Sprite(game.assets.textureHolder.over_BACKGROUND);
         initializeStage();
@@ -78,7 +78,7 @@ public class GameOverScreen implements Screen {
         game.batch.begin();
 
         menuBackground.draw(game.batch);
-        gameOverText.render(game.batch);
+        text.render(game.batch);
         game.batch.end();
         stage.draw();
     }
@@ -135,5 +135,6 @@ public class GameOverScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        text.dispose();
     }
 }

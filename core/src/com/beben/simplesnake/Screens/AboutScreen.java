@@ -123,6 +123,7 @@ public class AboutScreen implements Screen { //TODO ABOUT
     @Override
     public void dispose() {
         stage.dispose();
+        text.dispose();
     }
 
 }

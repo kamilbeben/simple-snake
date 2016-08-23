@@ -30,7 +30,7 @@ public class PlayScreen implements Screen {
     private Stage stage;
 
     private GameTheme theme;
-    private GameText gameText;
+    private GameText text;
     private GameInterface gameInterface;
 
     private Map map;
@@ -73,7 +73,7 @@ public class PlayScreen implements Screen {
     private void initializeGUI() {
         gameInterface = new GameInterface(stage, game.assets);
         theme = new GameTheme(game.assets.textureHolder);
-        gameText = new GameText(game.assets.manager.get(
+        text = new GameText(game.assets.manager.get(
                 "fonts/font.fnt", BitmapFont.class));
     }
 
@@ -101,13 +101,13 @@ public class PlayScreen implements Screen {
         player.draw(game.batch);
         timeBomb.drawIfAlive(game.batch);
         apple.draw(game.batch);
-        gameText.render(game.batch);
+        text.render(game.batch);
 
         game.batch.end();
     }
 
     private void update() {
-        gameText.update(player.getPoints(), state);
+        text.update(player.getPlayerScore(), state);
         if (state.isContinue()) {
             timeBomb.update();
             player.update();
@@ -148,7 +148,7 @@ public class PlayScreen implements Screen {
 
 
     private void gameOver() {
-        game.setScreen(new GameOverScreen(game, player.getPoints()));
+        game.setScreen(new GameOverScreen(game, player.getPlayerScore()));
         dispose();
     }
 
@@ -234,5 +234,6 @@ public class PlayScreen implements Screen {
     @Override
     public void dispose() {
         stage.dispose();
+        text.dispose();
     }
 }

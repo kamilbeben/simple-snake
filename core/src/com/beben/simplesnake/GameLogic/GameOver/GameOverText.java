@@ -78,4 +78,8 @@ public class GameOverText {
         return glyphLayout.height;
     }
 
+    public void dispose() {
+        font.dispose();
+    }
+
 }
