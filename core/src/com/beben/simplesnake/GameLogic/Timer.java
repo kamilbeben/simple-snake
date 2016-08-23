@@ -53,12 +53,12 @@ public class Timer {
 
 
     private void updateSpeedHardMode(int points) {
-        if (points < 50) moveInterval = 0.1f;
-        else if (points < 150) moveInterval = 0.090f;
-        else if (points < 250) moveInterval = 0.080f;
-        else if (points < 350) moveInterval = 0.075f;
-        else if (points < 450) moveInterval = 0.070f;
-        else if (points < 550) moveInterval = 0.065f;
+        if (points < 50) moveInterval = 0.12f;
+        else if (points < 150) moveInterval = 0.11f;
+        else if (points < 250) moveInterval = 0.10f;
+        else if (points < 350) moveInterval = 0.09f;
+        else if (points < 450) moveInterval = 0.08f;
+        else if (points < 550) moveInterval = 0.07f;
         else if (points < 650) moveInterval = 0.060f;
         else if (points < 750) moveInterval = 0.055f;
         else if (points < 850) moveInterval = 0.050f;

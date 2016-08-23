@@ -34,7 +34,7 @@ public class GameConfig {
 
     public void loadPreferences() {
         theme.update(preferences.getString(PREFERENCES_theme, "default/"));
-        map.update(preferences.getString(PREFERENCES_map, "classic_nowalls"));
+        map.update(preferences.getString(PREFERENCES_map, "classic_walls"));
         vibrations = preferences.getBoolean(PREFERENCES_vibrations, true);
         hardMode = preferences.getBoolean(PREFERENCES_hardMode, false);
     }

@@ -55,7 +55,7 @@ public class OptionsScreen implements Screen {
     private void initializeSprites() {
         background = new Sprite(game.assets.textureHolder.options_BACKGROUND);
         initializeStylePreview();
-        initializeMapPreview();
+        initializeAndUpdateMapPreview();
     }
 
     private void initializeStylePreview() {
@@ -69,7 +69,7 @@ public class OptionsScreen implements Screen {
                 position_y);
     }
 
-    private void initializeMapPreview() {
+    private void initializeAndUpdateMapPreview() {
         float position_y = stylePreview.getY() -
                 game.assets.textureHolder.options_mapPreview_CLASSIC_WALLS.getHeight() - itemSpacing;
         if (game.config.map.isClassicWALLS()) {
@@ -80,6 +80,12 @@ public class OptionsScreen implements Screen {
             mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_MIDDLESQUARE_WALLS);
         } else if (game.config.map.isMiddleSquareNOWALLS()) {
             mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_MIDDLESQUARE_NOWALLS);
+        } else if (game.config.map.isCrusader()) {
+            mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_CRUSADER);
+        } else if (game.config.map.isCage()) {
+            mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_CAGE);
+        } else if (game.config.map.isHeart()) {
+            mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_HEART);
         }
         mapPreview.setPosition((SnakeGame.V_WIDTH/2) - (stylePreview.getWidth()/2),
                 position_y);
@@ -190,11 +196,11 @@ public class OptionsScreen implements Screen {
             game.config.savePreferences();
         }else if ( buttonMapSwitchLeft.isClicked() ) {
             game.config.map.switchLeft();
-            initializeMapPreview();
+            initializeAndUpdateMapPreview();
             game.config.savePreferences();
         } else if ( buttonMapSwitchRight.isClicked() ) {
             game.config.map.switchRight();
-            initializeMapPreview();
+            initializeAndUpdateMapPreview();
             game.config.savePreferences();
         } else if ( buttonStyleSwitchLeft.isClicked() ) {
             game.config.theme.switchStyles();

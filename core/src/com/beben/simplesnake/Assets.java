@@ -39,6 +39,9 @@ public class Assets implements Disposable {
         manager.load("preview_maps/classic_nowalls.png", Texture.class);
         manager.load("preview_maps/middlesquare_walls.png", Texture.class);
         manager.load("preview_maps/middlesquare_nowalls.png", Texture.class);
+        manager.load("preview_maps/crusader.png", Texture.class);
+        manager.load("preview_maps/cage.png", Texture.class);
+        manager.load("preview_maps/heart.png", Texture.class);
         waitForLoadingToComplete();
         textureHolder = new TextureHolder(
                 manager.get("menu/menu_background.png", Texture.class),
@@ -54,7 +57,11 @@ public class Assets implements Disposable {
                 manager.get("preview_maps/classic_walls.png", Texture.class),
                 manager.get("preview_maps/classic_nowalls.png", Texture.class),
                 manager.get("preview_maps/middlesquare_walls.png", Texture.class),
-                manager.get("preview_maps/middlesquare_nowalls.png", Texture.class)
+                manager.get("preview_maps/middlesquare_nowalls.png", Texture.class),
+                manager.get("preview_maps/crusader.png", Texture.class),
+                manager.get("preview_maps/cage.png", Texture.class),
+                manager.get("preview_maps/heart.png", Texture.class),
+                manager.get("preview_maps/heart.png", Texture.class) // doubled, because two constructors had same amount of elements
         );
     }
     public void loadMenuAssets() {
