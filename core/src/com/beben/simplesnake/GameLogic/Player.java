@@ -219,9 +219,6 @@ public class Player {
     }
 
     public void setDirection(DIRECTION direction) {
-//        if (timer.isItTimeToChangeDirection()) {
-//            this.direction = direction;
-//        } //TODO im gonna keep this in case of some forgotten bug or smt
         this.direction = direction;
     }
 

@@ -87,11 +87,4 @@ public class Timer {
             return true;
         } else return false;
     }
-
-    public boolean isItTimeToChangeDirection() {
-        if (time - lastDirectionChange > moveInterval + 0.05f) {
-            lastDirectionChange = time;
-            return true;
-        } else return false;
-    }
 }

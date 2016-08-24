@@ -18,7 +18,7 @@ import com.beben.simplesnake.SnakeGame;
 /**
  * Created by bezik on 09.08.16.
  */
-public class AboutScreen implements Screen { //TODO ABOUT
+public class AboutScreen implements Screen {
 
     private SnakeGame game;
     private OrthographicCamera camera;
