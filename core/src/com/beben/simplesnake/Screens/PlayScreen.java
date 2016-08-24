@@ -65,7 +65,7 @@ public class PlayScreen implements Screen {
     }
 
     private void initializeDrawableElements() {
-        player = new Player(game.assets.textureHolder, game.config.hardMode);
+        player = new Player(game.assets.textureHolder, game.config.hardMode, game.config.map);
         apple = new Apple(game.assets.textureHolder.snack_APPLE);
         timeBomb = new TimeBomb(game.assets.textureHolder.snack_TIMEBOMB);
     }
@@ -107,6 +107,7 @@ public class PlayScreen implements Screen {
     }
 
     private void update() {
+        handleUserInput();
         text.update(player.getPlayerScore(), state);
         if (state.isContinue()) {
             timeBomb.update();
@@ -115,7 +116,6 @@ public class PlayScreen implements Screen {
         checkForCollisionsWithItself();
         checkForCollisionWithMap();
         checkForCollisionsWithSnacks();
-        handleUserInput();
     }
 
     private void checkForCollisionsWithItself() {
@@ -171,7 +171,7 @@ public class PlayScreen implements Screen {
             moveDown();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.BACKSPACE) || Gdx.input.isKeyPressed(Input.Keys.BACK)) {
             game.setScreen(new MenuScreen(game));
             dispose();
         }

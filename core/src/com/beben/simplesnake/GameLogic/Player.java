@@ -2,6 +2,8 @@ package com.beben.simplesnake.GameLogic;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.beben.simplesnake.*;
+import com.beben.simplesnake.Options.OptionsMap;
+
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
@@ -28,12 +30,18 @@ public class Player {
 
 
 
-    public Player(TextureHolder textureHolder, boolean isHardModeEnabled) {
+    public Player(TextureHolder textureHolder, boolean isHardModeEnabled, OptionsMap map) {
         this.textureHolder = textureHolder;
         timer = new Timer(isHardModeEnabled);
         hardMode = isHardModeEnabled;
         playerScore = 0;
-        direction = DIRECTION.UP;
+        if (map.isCage() || map.isEquation()) {
+            direction = DIRECTION.RIGHT;
+        } else if (map.isHeart()) {
+            direction = DIRECTION.LEFT;
+        } else {
+            direction = DIRECTION.UP;
+        }
         initializeSnakeElements();
     }
 
@@ -55,10 +63,10 @@ public class Player {
 
     public void update() {
         timer.update(playerScore);
-        moveIfTimeIsRight();
         if (isCollidingWithWalls()) {
             goThroughWall();
         }
+        moveIfTimeIsRight();
     }
 
     private void moveIfTimeIsRight() {
@@ -211,9 +219,10 @@ public class Player {
     }
 
     public void setDirection(DIRECTION direction) {
-        if (timer.isItTimeToChangeDirection()) {
-            this.direction = direction;
-        }
+//        if (timer.isItTimeToChangeDirection()) {
+//            this.direction = direction;
+//        } //TODO im gonna keep this in case of some forgotten bug or smt
+        this.direction = direction;
     }
 
     private boolean isCollidingWithWalls( ) {

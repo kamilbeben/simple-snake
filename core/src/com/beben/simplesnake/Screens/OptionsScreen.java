@@ -80,12 +80,14 @@ public class OptionsScreen implements Screen {
             mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_MIDDLESQUARE_WALLS);
         } else if (game.config.map.isMiddleSquareNOWALLS()) {
             mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_MIDDLESQUARE_NOWALLS);
-        } else if (game.config.map.isCrusader()) {
-            mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_CRUSADER);
+        } else if (game.config.map.isEquation()) {
+            mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_EQUATION);
         } else if (game.config.map.isCage()) {
             mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_CAGE);
         } else if (game.config.map.isHeart()) {
             mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_HEART);
+        } else if (game.config.map.isCave()) {
+            mapPreview = new Sprite(game.assets.textureHolder.options_mapPreview_CAVE);
         }
         mapPreview.setPosition((SnakeGame.V_WIDTH/2) - (stylePreview.getWidth()/2),
                 position_y);
