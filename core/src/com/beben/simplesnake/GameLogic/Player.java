@@ -189,7 +189,7 @@ public class Player {
     public boolean isCollidingWithItself() {
         try {
             for (int i=1; i<elementList.size();i++) {
-                if (elementList.get(i).isCollidingWith(elementList.get(0).getPosition())) {
+                if (elementList.get(i).isCollidingWith(elementList.get(0).getPosition()) && !collidingWithWall) {
                     return true;
                 }
             }

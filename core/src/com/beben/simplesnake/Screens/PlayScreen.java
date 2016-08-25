@@ -184,29 +184,25 @@ public class PlayScreen implements Screen {
     }
 
     private void moveRight() {
-        if (player.direction != Player.DIRECTION.LEFT
-                && !player.collidingWithWall) {
+        if (player.direction != Player.DIRECTION.LEFT) {
             player.setDirection(Player.DIRECTION.RIGHT);
         }
     }
 
     private void moveLeft() {
-        if (player.direction != Player.DIRECTION.RIGHT
-                && !player.collidingWithWall) {
+        if (player.direction != Player.DIRECTION.RIGHT) {
             player.setDirection(Player.DIRECTION.LEFT);
         }
     }
 
     private void moveUp() {
-        if (player.direction != Player.DIRECTION.DOWN
-                && !player.collidingWithWall) {
+        if (player.direction != Player.DIRECTION.DOWN) {
             player.setDirection(Player.DIRECTION.UP);
         }
     }
 
     private void moveDown() {
-        if (player.direction != Player.DIRECTION.UP
-                && !player.collidingWithWall){
+        if (player.direction != Player.DIRECTION.UP){
             player.setDirection(Player.DIRECTION.DOWN);
         }
     }
