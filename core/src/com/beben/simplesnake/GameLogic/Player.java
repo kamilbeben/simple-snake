@@ -23,7 +23,6 @@ public class Player {
 
     private List <Element> elementList;
     private List <Position> elementPastPosition;
-    public boolean collidingWithWall;
     private Timer timer;
     private TextureHolder textureHolder;
     private boolean hardMode;
@@ -63,9 +62,7 @@ public class Player {
 
     public void update() {
         timer.update(playerScore);
-        if (isCollidingWithWalls()) {
-            goThroughWall();
-        }
+        goingThroughWalls();
         moveIfTimeIsRight();
     }
 
@@ -189,7 +186,7 @@ public class Player {
     public boolean isCollidingWithItself() {
         try {
             for (int i=1; i<elementList.size();i++) {
-                if (elementList.get(i).isCollidingWith(elementList.get(0).getPosition()) && !collidingWithWall) {
+                if (elementList.get(i).isCollidingWith(elementList.get(0).getPosition())) {
                     return true;
                 }
             }
@@ -199,46 +196,39 @@ public class Player {
         return false;
     }
 
-    public void goThroughWall() {
-
-        if (direction == DIRECTION.LEFT) {
-            elementList.get(0).setX(SnakeGame.V_WIDTH - 3*SnakeGame.BORDER);
-        }
-
-        if (direction == DIRECTION.RIGHT) {
-            elementList.get(0).setX(SnakeGame.BORDER);
-        }
-
-        if (direction == DIRECTION.UP) {
-            elementList.get(0).setY(SnakeGame.V_HEIGHT - SnakeGame.BORDER - SnakeGame.ARENA_WIDTH);
-        }
-
-        if (direction == DIRECTION.DOWN) {
-            elementList.get(0).setY(SnakeGame.V_HEIGHT - 3*SnakeGame.BORDER);
-        }
-    }
-
     public void setDirection(DIRECTION direction) {
         this.direction = direction;
     }
 
-    private boolean isCollidingWithWalls( ) {
+    private void goThroughTopWall() {
+        direction = DIRECTION.UP;
+        elementList.get(0).setY(SnakeGame.V_HEIGHT - SnakeGame.BORDER - SnakeGame.ARENA_WIDTH);
+    }
 
+    private void goThroughBottomWall() {
+        direction = DIRECTION.DOWN;
+        elementList.get(0).setY(SnakeGame.V_HEIGHT - 3*SnakeGame.BORDER);
+    }
+
+    private void goThroughLeftWall() {
+        direction = DIRECTION.LEFT;
+        elementList.get(0).setX(SnakeGame.V_WIDTH - 3*SnakeGame.BORDER);
+    }
+
+    private void goThroughRightWall() {
+        direction = DIRECTION.RIGHT;
+        elementList.get(0).setX(SnakeGame.BORDER);
+    }
+
+    private void goingThroughWalls( ) {
         if (elementList.get(0).getX() == -SnakeGame.BORDER) {
-            collidingWithWall = true;
-            return true;
+            goThroughLeftWall();
         } else if (elementList.get(0).getX() == (SnakeGame.V_WIDTH - SnakeGame.BORDER)) {
-            collidingWithWall = true;
-            return true;
+            goThroughRightWall();
         } else if (elementList.get(0).getY() == (SnakeGame.V_HEIGHT - SnakeGame.BORDER)) {
-            collidingWithWall = true;
-            return true;
+            goThroughTopWall();
         } else if (elementList.get(0).getY() == (SnakeGame.V_HEIGHT - 3*SnakeGame.BORDER - SnakeGame.ARENA_WIDTH)) {
-            collidingWithWall = true;
-            return true;
-        }  else {
-            collidingWithWall = false;
-            return false;
+            goThroughBottomWall();
         }
     }
 
