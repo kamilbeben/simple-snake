@@ -25,7 +25,7 @@ public class Assets implements Disposable {
     public void loadOptionsAssets() {
         manager.clear();
         manager.load("fonts/font.fnt", BitmapFont.class);
-        manager.load("menu/menu_background.png", Texture.class);
+        manager.load("menu/menu_background_wo_text.png", Texture.class);
         manager.load("menu/options_vibrations_ON.png", Texture.class);
         manager.load("menu/options_vibrations_OFF.png", Texture.class);
         manager.load("menu/options_easyMode.png", Texture.class);
@@ -45,7 +45,7 @@ public class Assets implements Disposable {
         manager.load("preview_maps/cave.png", Texture.class);
         waitForLoadingToComplete();
         textureHolder = new TextureHolder(
-                manager.get("menu/menu_background.png", Texture.class),
+                manager.get("menu/menu_background_wo_text.png", Texture.class),
                 manager.get("menu/options_vibrations_ON.png", Texture.class),
                 manager.get("menu/options_vibrations_OFF.png", Texture.class),
                 manager.get("menu/options_easyMode.png", Texture.class),
@@ -139,11 +139,11 @@ public class Assets implements Disposable {
     public void loadAboutAssets() {
         manager.clear();
         manager.load("fonts/font.fnt", BitmapFont.class);
-        manager.load("menu/menu_background.png", Texture.class);
+        manager.load("menu/menu_background_wo_text.png", Texture.class);
         manager.load("menu/return_button.png", Texture.class);
         waitForLoadingToComplete();
         textureHolder = new TextureHolder(
-                manager.get("menu/menu_background.png", Texture.class),
+                manager.get("menu/menu_background_wo_text.png", Texture.class),
                 manager.get("menu/return_button.png", Texture.class)
         );
     }

@@ -45,18 +45,14 @@ public class MenuScreen implements Screen {
     }
 
     private void addActors() {
-        buttonPlay = new MenuButton(stage, calculateButtonPositionY(1),
+        buttonPlay = new MenuButton(stage, 151,
                 game.assets.textureHolder.menu_PLAY);
 
-        buttonOptions = new MenuButton(stage, calculateButtonPositionY(2),
+        buttonOptions = new MenuButton(stage, 87,
                 game.assets.textureHolder.menu_OPTIONS);
 
         infoButton = new MenuButton(stage,
                 game.assets.textureHolder.menu_INFO);
-    }
-
-    private float calculateButtonPositionY(int buttonNumber) {
-        return (SnakeGame.V_HEIGHT / 2) - buttonNumber * (buttonSpacing + MenuButton.buttonHeight);
     }
 
     public void handleUserInput() {

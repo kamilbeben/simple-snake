@@ -56,9 +56,13 @@ public class MenuButton {
 
         button = new Button(style);
 
-        button.setPosition((SnakeGame.V_WIDTH / 2) - (texture.getWidth() / 2), positionY);
+        button.setPosition(centerHorizontal(), positionY);
         button.setWidth(texture.getWidth());
         button.setHeight(texture.getHeight());
+    }
+
+    private float centerHorizontal() {
+        return (SnakeGame.V_WIDTH/2) - (texture.getWidth()/2);
     }
 
     private void setMenuButtonStyleAndPosition(Skin skin, Position position) {
@@ -85,7 +89,7 @@ public class MenuButton {
 
         button = new Button(style);
 
-        button.setPosition(SnakeGame.V_WIDTH - texture.getWidth() - 4, SnakeGame.V_HEIGHT - texture.getHeight() - 4);
+        button.setPosition(191, 350);
         button.setWidth(texture.getWidth());
         button.setHeight(texture.getHeight());
     }
