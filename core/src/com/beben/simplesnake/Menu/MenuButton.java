@@ -109,6 +109,10 @@ public class MenuButton {
         stage.addActor(button);
     }
 
+    public void remove() {
+        button.remove();
+    }
+
     public float getY() {
         return button.getY();
     }

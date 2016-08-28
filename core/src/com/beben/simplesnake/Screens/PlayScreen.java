@@ -65,7 +65,7 @@ public class PlayScreen implements Screen {
     }
 
     private void initializeDrawableElements() {
-        player = new Player(game.assets.textureHolder, game.config.hardMode, game.config.map);
+        player = new Player(game.assets.textureHolder, game.config.difficulty, game.config.map);
         apple = new Apple(game.assets.textureHolder.snack_APPLE);
         timeBomb = new TimeBomb(game.assets.textureHolder.snack_TIMEBOMB);
     }

@@ -2,6 +2,7 @@ package com.beben.simplesnake.GameLogic;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.beben.simplesnake.*;
+import com.beben.simplesnake.Options.Difficulty;
 import com.beben.simplesnake.Options.OptionsMap;
 
 import java.util.ArrayList;
@@ -29,10 +30,10 @@ public class Player {
 
 
 
-    public Player(TextureHolder textureHolder, boolean isHardModeEnabled, OptionsMap map) {
+    public Player(TextureHolder textureHolder, Difficulty difficulty, OptionsMap map) {
         this.textureHolder = textureHolder;
-        timer = new Timer(isHardModeEnabled);
-        hardMode = isHardModeEnabled;
+        timer = new Timer(difficulty);
+        hardMode = difficulty.isHard();
         playerScore = 0;
         if (map.isCage() || map.isEquation()) {
             direction = DIRECTION.RIGHT;

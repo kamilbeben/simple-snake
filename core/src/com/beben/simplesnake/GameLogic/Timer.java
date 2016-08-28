@@ -1,6 +1,7 @@
 package com.beben.simplesnake.GameLogic;
 
 import com.badlogic.gdx.Gdx;
+import com.beben.simplesnake.Options.Difficulty;
 
 /**
  * Created by bezik on 10.08.16.
@@ -14,14 +15,14 @@ public class Timer {
     public float lastDirectionChange;
     public float nitro;
     public boolean nitroBoolean = false;
-    public boolean isHardModeEnabled;
+    private Difficulty difficulty;
 
-    public Timer(boolean isHardModeEnabled) {
+    public Timer(Difficulty difficulty) {
         time = 0;
         lastMove = 0;
         lastDirectionChange = 0;
         nitro = 0;
-        this.isHardModeEnabled = isHardModeEnabled;
+        this.difficulty = difficulty;
     }
 
     public void update(int points) {
@@ -31,15 +32,17 @@ public class Timer {
     
     private void updatePlayerSpeed(int points) {
         if (!nitroBoolean) {
-            if (isHardModeEnabled) {
+            if (difficulty.isHard()) {
                 updateSpeedHardMode(points);
-            } else {
+            } else if (difficulty.isMedium()) {
+                updateSpeedMediumMode(points);
+            } else if (difficulty.isEasy()) {
                 updateSpeedEasyMode(points);
             }
         } else handleNitro(points);
     }
 
-    private void updateSpeedMediumMode(int points) {
+    private void updateSpeedEasyMode(int points) {
         if (points < 50) moveInterval = 0.20f;
         else if (points < 150) moveInterval = 0.17f;
         else if (points < 250) moveInterval = 0.15f;
@@ -51,7 +54,7 @@ public class Timer {
         else if (points < 850) moveInterval = 0.07f;
     }
 
-    private void updateSpeedEasyMode(int points) {
+    private void updateSpeedMediumMode(int points) {
         if (points < 50) moveInterval = 0.135f;
         else if (points < 150) moveInterval = 0.125f;
         else if (points < 250) moveInterval = 0.115f;

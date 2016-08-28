@@ -34,6 +34,7 @@ public class SnakeGame extends Game {
 		Gdx.input.setCatchBackKey(false);
 	}
 
+
 	@Override
 	public void render () {
 		super.render();
