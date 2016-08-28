@@ -113,6 +113,9 @@ public class PlayScreen implements Screen {
         if (state.isContinue()) {
             timeBomb.update();
             player.update();
+            game.handler.hideAds();
+        } else {
+            game.handler.showAds();
         }
         checkForCollisionsWithItself();
         checkForCollisionWithMap();
@@ -177,7 +180,7 @@ public class PlayScreen implements Screen {
             dispose();
         }
 
-        if (gameInterface.pauseButton.isClicked() && state.isContinue()) {
+        if (gameInterface.pauseButton.isClicked()) { //TODO check if not bugging -  && state.isContinue()
             state.switchPause();
         } else if (state.isPause() && Gdx.input.justTouched()) {
             state.switchPause();
