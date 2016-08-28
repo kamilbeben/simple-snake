@@ -125,10 +125,13 @@ public class OptionsScreen implements Screen {
     private void initializeDifficultyButton() {
         float position_y = mapPreview.getY() -
                 game.assets.textureHolder.options_hardMode.getHeight() - itemSpacing;
-        if (game.config.hardMode) {
+        if (game.config.difficulty.isHard()) {
             buttonDifficulty = new MenuButton(stage, position_y,
                     game.assets.textureHolder.options_hardMode);
-        } else {
+        } else if (game.config.difficulty.isMedium()) {
+            buttonDifficulty = new MenuButton(stage, position_y,
+                    game.assets.textureHolder.options_mediumMode);
+        } else if (game.config.difficulty.isEasy()){
             buttonDifficulty = new MenuButton(stage, position_y,
                     game.assets.textureHolder.options_easyMode);
         }
@@ -233,13 +236,13 @@ public class OptionsScreen implements Screen {
         game.config.switchVibrations();
     }
 
-    private void switchDifficulty() {
-        if ( game.config.hardMode) {
+    private void switchDifficulty() { //TODO switch images
+        if ( game.config.difficulty.isHard()) {
             buttonDifficulty.setTexture(stage, game.assets.textureHolder.options_easyMode);
-        } else {
+        } else if (game.config.difficulty.isEasy()){
             buttonDifficulty.setTexture(stage, game.assets.textureHolder.options_hardMode);
         }
-        game.config.switchDifficulty();
+        game.config.difficulty.switchDifficulty();
     }
 
     @Override
