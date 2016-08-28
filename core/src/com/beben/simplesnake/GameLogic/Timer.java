@@ -39,18 +39,29 @@ public class Timer {
         } else handleNitro(points);
     }
 
-    private void updateSpeedEasyMode(int points) {
-        if (points < 50) moveInterval = 0.135f;
-        else if (points < 150) moveInterval = 0.115f;
-        else if (points < 250) moveInterval = 0.105f;
-        else if (points < 350) moveInterval = 0.095f;
-        else if (points < 450) moveInterval = 0.085f;
-        else if (points < 550) moveInterval = 0.080f;
-        else if (points < 650) moveInterval = 0.075f;
-        else if (points < 750) moveInterval = 0.065f;
-        else if (points < 850) moveInterval = 0.060f;
+    private void updateSpeedMediumMode(int points) {
+        if (points < 50) moveInterval = 0.20f;
+        else if (points < 150) moveInterval = 0.17f;
+        else if (points < 250) moveInterval = 0.15f;
+        else if (points < 350) moveInterval = 0.13f;
+        else if (points < 450) moveInterval = 0.11f;
+        else if (points < 550) moveInterval = 0.10f;
+        else if (points < 650) moveInterval = 0.09f;
+        else if (points < 750) moveInterval = 0.08f;
+        else if (points < 850) moveInterval = 0.07f;
     }
 
+    private void updateSpeedEasyMode(int points) {
+        if (points < 50) moveInterval = 0.135f;
+        else if (points < 150) moveInterval = 0.125f;
+        else if (points < 250) moveInterval = 0.115f;
+        else if (points < 350) moveInterval = 0.105f;
+        else if (points < 450) moveInterval = 0.095f;
+        else if (points < 550) moveInterval = 0.085f;
+        else if (points < 650) moveInterval = 0.080f;
+        else if (points < 750) moveInterval = 0.075f;
+        else if (points < 850) moveInterval = 0.070f;
+    }
 
     private void updateSpeedHardMode(int points) {
         if (points < 50) moveInterval = 0.12f;

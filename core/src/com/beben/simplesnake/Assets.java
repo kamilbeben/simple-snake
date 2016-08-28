@@ -29,6 +29,7 @@ public class Assets implements Disposable {
         manager.load("menu/options_vibrations_ON.png", Texture.class);
         manager.load("menu/options_vibrations_OFF.png", Texture.class);
         manager.load("menu/options_easyMode.png", Texture.class);
+        manager.load("menu/options_mediumMode.png", Texture.class);
         manager.load("menu/options_hardMode.png", Texture.class);
         manager.load("menu/style_preview_modern.png", Texture.class);
         manager.load("menu/style_preview_retro.png", Texture.class);
@@ -49,6 +50,7 @@ public class Assets implements Disposable {
                 manager.get("menu/options_vibrations_ON.png", Texture.class),
                 manager.get("menu/options_vibrations_OFF.png", Texture.class),
                 manager.get("menu/options_easyMode.png", Texture.class),
+                manager.get("menu/options_mediumMode.png", Texture.class),
                 manager.get("menu/options_hardMode.png", Texture.class),
                 manager.get("menu/style_preview_modern.png", Texture.class),
                 manager.get("menu/style_preview_retro.png", Texture.class),

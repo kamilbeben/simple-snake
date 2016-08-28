@@ -34,6 +34,7 @@ public class TextureHolder {
     public Texture options_VIBRATION_ON;
     public Texture options_VIBRATION_OFF;
     public Texture options_easyMode;
+    public Texture options_mediumMode;
     public Texture options_hardMode;
     public Texture options_stylePreview_MODERN;
     public Texture options_stylePreview_DEFAULT;
@@ -68,13 +69,14 @@ public class TextureHolder {
         this.menu_INFO = menu_INFO;
     }
 
-    public TextureHolder(Texture options_BACKGROUND, Texture options_VIBRATION_ON, Texture options_VIBRATION_OFF, Texture options_easyMode, Texture options_hardMode, Texture options_stylePreview_MODERN, Texture options_stylePreview_DEFAULT, Texture options_switch_RIGHT, Texture options_switch_LEFT, Texture options_button_RETURN, Texture options_mapPreview_CLASSIC_WALLS, Texture options_mapPreview_CLASSIC_NOWALLS, Texture options_mapPreview_MIDDLESQUARE_WALLS, Texture options_mapPreview_MIDDLESQUARE_NOWALLS,
+    public TextureHolder(Texture options_BACKGROUND, Texture options_VIBRATION_ON, Texture options_VIBRATION_OFF, Texture options_easyMode, Texture options_mediumMode, Texture options_hardMode, Texture options_stylePreview_MODERN, Texture options_stylePreview_DEFAULT, Texture options_switch_RIGHT, Texture options_switch_LEFT, Texture options_button_RETURN, Texture options_mapPreview_CLASSIC_WALLS, Texture options_mapPreview_CLASSIC_NOWALLS, Texture options_mapPreview_MIDDLESQUARE_WALLS, Texture options_mapPreview_MIDDLESQUARE_NOWALLS,
                          Texture options_mapPreview_EQUATION, Texture options_mapPreview_CAGE, Texture options_mapPreview_HEART,
                          Texture options_mapPreview_CAVE) {
         this.options_BACKGROUND = options_BACKGROUND;
         this.options_VIBRATION_ON = options_VIBRATION_ON;
         this.options_VIBRATION_OFF = options_VIBRATION_OFF;
         this.options_easyMode = options_easyMode;
+        this.options_mediumMode = options_mediumMode;
         this.options_hardMode = options_hardMode;
         this.options_stylePreview_MODERN = options_stylePreview_MODERN;
         this.options_stylePreview_DEFAULT = options_stylePreview_DEFAULT;
