@@ -29,6 +29,7 @@ public class MenuScreen implements Screen {
 
     public MenuScreen(SnakeGame game) {
         this.game = game;
+        game.handler.hideAds();
         game.assets.loadMenuAssets();
         menuBackground = new Sprite(game.assets.textureHolder.menu_BACKGROUND);
         initializeStage();

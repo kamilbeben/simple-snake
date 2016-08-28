@@ -44,6 +44,7 @@ public class PlayScreen implements Screen {
 
     public PlayScreen(SnakeGame game) {
         this.game = game;
+        game.handler.hideAds();
         initializeAssets();
         map = new Map(game);
         initializeStage();

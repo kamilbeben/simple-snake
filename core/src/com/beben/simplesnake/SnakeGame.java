@@ -15,6 +15,12 @@ public class SnakeGame extends Game {
 	public static final int ARENA_WIDTH = 228;
 	public GameConfig config;
 	public Assets assets;
+	public AdHandler handler;
+	boolean toggle;
+
+	public SnakeGame(AdHandler handler) {
+		this.handler = handler;
+	}
 
 	@Override
 	public void create () {
@@ -23,6 +29,7 @@ public class SnakeGame extends Game {
 		assets.setStyle(config.theme.value);
 		batch = new SpriteBatch();
 		setScreen(new MenuScreen(this));
+		handler.showAds();
 
 	}
 

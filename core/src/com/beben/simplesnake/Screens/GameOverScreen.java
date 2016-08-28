@@ -35,6 +35,7 @@ public class GameOverScreen implements Screen {
     public GameOverScreen(SnakeGame game, int playerScore) {
         timer = 0f;
         this.game = game;
+        game.handler.showAds();
         game.assets.loadGameOverAssets();
         text = new GameOverText(game.assets.manager.get("fonts/font.fnt",
                 BitmapFont.class), playerScore, game.config.map.getMapNameString());

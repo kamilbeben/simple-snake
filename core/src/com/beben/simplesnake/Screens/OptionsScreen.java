@@ -39,10 +39,12 @@ public class OptionsScreen implements Screen {
 
     private OptionsText text;
     private static final float itemSpacing = 28;
+    private static final float adHeight = 50;
 
 
     public OptionsScreen(SnakeGame game) {
         this.game = game;
+        game.handler.showAds();
         game.assets.loadOptionsAssets();
         initializeSprites();
         initializeStage();
@@ -162,7 +164,7 @@ public class OptionsScreen implements Screen {
     }
 
     private void initializeReturnButton() {
-        buttonReturn = new MenuButton(stage, new Position(8, 8),
+        buttonReturn = new MenuButton(stage, new Position(8, 2 + adHeight),
                 game.assets.textureHolder.options_button_RETURN);
     }
 
