@@ -32,7 +32,6 @@ public class AboutScreen implements Screen {
 
     public AboutScreen(SnakeGame game) {
         this.game = game;
-        game.handler.hideAds();
         game.assets.loadAboutAssets();
         initializeBackground();
         initializeStage();

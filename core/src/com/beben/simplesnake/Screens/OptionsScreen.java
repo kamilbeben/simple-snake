@@ -44,7 +44,6 @@ public class OptionsScreen implements Screen {
 
     public OptionsScreen(SnakeGame game) {
         this.game = game;
-        game.handler.showAds();
         game.assets.loadOptionsAssets();
         initializeSprites();
         initializeStage();

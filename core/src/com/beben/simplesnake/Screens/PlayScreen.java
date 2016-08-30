@@ -44,7 +44,6 @@ public class PlayScreen implements Screen {
 
     public PlayScreen(SnakeGame game) {
         this.game = game;
-        game.handler.hideAds();
         initializeAssets();
         map = new Map(game);
         initializeStage();
@@ -113,9 +112,6 @@ public class PlayScreen implements Screen {
         if (state.isContinue()) {
             timeBomb.update();
             player.update();
-            game.handler.hideAds();
-        } else {
-            game.handler.showAds();
         }
         checkForCollisionsWithItself();
         checkForCollisionWithMap();
