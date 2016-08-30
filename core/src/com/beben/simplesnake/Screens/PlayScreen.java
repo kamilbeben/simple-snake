@@ -155,28 +155,28 @@ public class PlayScreen implements Screen {
 
     private void handleUserInput() {
 
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || gameInterface.dPad.right.isClicked()) {
+        if (gameInterface.dPad.right.isClicked()) {
             moveRight();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || gameInterface.dPad.left.isClicked()) {
+        if (gameInterface.dPad.left.isClicked()) {
             moveLeft();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.UP) || gameInterface.dPad.up.isClicked()) {
+        if (gameInterface.dPad.up.isClicked()) {
             moveUp();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.DOWN) || gameInterface.dPad.down.isClicked()) {
+        if (gameInterface.dPad.down.isClicked()) {
             moveDown();
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.BACKSPACE) || Gdx.input.isKeyPressed(Input.Keys.BACK)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
             game.setScreen(new MenuScreen(game));
             dispose();
         }
 
-        if (gameInterface.pauseButton.isClicked()) { //TODO check if not bugging -  && state.isContinue()
+        if (gameInterface.pauseButton.isClicked()) {
             state.switchPause();
         } else if (state.isPause() && Gdx.input.justTouched()) {
             state.switchPause();
