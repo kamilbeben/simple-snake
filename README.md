@@ -7,4 +7,4 @@ This is my first completed project on android, and i've learned a lot coding thi
 100001
 100001
 111111
-and then load them in program, but month ago i didn't knew things like i do now, and i know that my code is probably very obsolete, you don't have to tell me this :)
+and then load them in program, but month ago i didn't knew things like i do now, and i know that my code is probably very obsolete, you don't have to tell me this. Enjoy!
